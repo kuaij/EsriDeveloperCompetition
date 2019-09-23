@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/dialog_labelsview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFF"
+        android:orientation="vertical">
+
+        <com.zhy.view.flowlayout.TagFlowLayout
+            app:max_select="10"
+            android:id="@+id/tabLayout_item"
+            android:layout_marginLeft="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp" />
+
+        <com.zhy.view.flowlayout.TagFlowLayout
+            app:max_select="10"
+            android:id="@+id/tabLayout_human"
+            android:layout_marginLeft="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp">
+
+            <net.qiujuer.genius.ui.widget.Button
+                android:id="@+id/focus_btn_confirm"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/focus_confirm_choice"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:background="@drawable/button_shape"
+                app:gTouchEffect="auto"
+                app:gTouchColor="@color/black_alpha_48"/>
+
+            <net.qiujuer.genius.ui.widget.TextView
+                android:id="@+id/focus_tv_skip"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginLeft="10sp"
+                android:clickable="true"
+                android:text="@string/focus_skip_this"
+                android:textColor="#000000"
+                android:textSize="18sp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

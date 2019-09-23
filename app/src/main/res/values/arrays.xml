@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="venue_items">
+        <item>水立方%4</item>
+        <item>国家体育馆%4</item>
+        <item>五棵松体育馆%5</item>
+        <item>首都体育馆%3</item>
+        <item>国家速滑馆%4</item>
+        <item>北欧中心越野滑雪场%4</item>
+        <item>北欧中心跳台滑雪场%4</item>
+        <item>冬季两项中心%5</item>
+        <item>云顶滑雪公园场地%3</item>
+        <item>国家高山滑雪中心%6</item>
+        <item>国家雪车雪橇中心%4</item>
+        <item>鸟巢%4</item>
+    </string-array>
+
+</resources>

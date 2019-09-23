@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.central.MedalStandingsActivity"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            style="@style/schedule_text_view"
+            android:text="@string/schedule_date_04"/>
+        <ImageView
+            android:id="@+id/schedule_iv_04"
+            style="@style/schedule_image_view"
+            android:src="@mipmap/schedule_0208" />
+
+        <TextView
+            style="@style/schedule_text_view"
+            android:text="@string/schedule_date_05"/>
+
+        <ImageView
+            android:id="@+id/schedule_iv_05"
+            style="@style/schedule_image_view"
+            android:src="@mipmap/schedule_0209" />
+
+        <TextView
+            style="@style/schedule_text_view"
+            android:text="@string/schedule_date_06"/>
+        <ImageView
+            style="@style/schedule_image_view"
+            android:src="@mipmap/schedule_0210"/>
+
+        <TextView
+            style="@style/schedule_text_view"
+            android:text="@string/schedule_date_07"/>
+        <ImageView
+            style="@style/schedule_image_view"
+            android:src="@mipmap/schedule_0211"/>
+
+        <TextView
+            style="@style/schedule_text_view"
+            android:text="@string/schedule_date_08"/>
+        <ImageView
+            style="@style/schedule_image_view"
+            android:src="@mipmap/schedule_0212"/>
+
+        <TextView
+            style="@style/schedule_text_view"
+            android:text="@string/schedule_date_09"/>
+        <ImageView
+            style="@style/schedule_image_view"
+            android:src="@mipmap/schedule_0213"/>
+
+        <TextView
+            style="@style/schedule_text_view"
+            android:text="@string/schedule_date_10"/>
+        <ImageView
+            style="@style/schedule_image_view"
+            android:src="@mipmap/schedule_0214"/>
+
+        <TextView
+            style="@style/schedule_text_view"
+            android:text="@string/schedule_date_11"/>
+        <ImageView
+            style="@style/schedule_image_view"
+            android:src="@mipmap/schedule_0215"/>
+
+        <TextView
+            style="@style/schedule_text_view"
+            android:text="@string/schedule_date_12"/>
+        <ImageView
+            style="@style/schedule_image_view"
+            android:src="@mipmap/schedule_0216"/>
+
+        <TextView
+            style="@style/schedule_text_view"
+            android:text="@string/schedule_date_13"/>
+        <ImageView
+            style="@style/schedule_image_view"
+            android:src="@mipmap/schedule_0217"/>
+
+        <TextView
+            style="@style/schedule_text_view"
+            android:text="@string/schedule_date_14"/>
+        <ImageView
+            style="@style/schedule_image_view"
+            android:src="@mipmap/schedule_0218"/>
+    </LinearLayout>
+
+
+
+</ScrollView>

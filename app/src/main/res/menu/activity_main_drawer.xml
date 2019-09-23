@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/central_medal_standings"
+            android:icon="@mipmap/central_medal"
+            android:title="@string/central_medal_standings" />
+        <item
+            android:id="@+id/central_games_schedule"
+            android:icon="@mipmap/central_games_schedule"
+            android:title="@string/central_games_schedule"/>
+
+        <item
+            android:id="@+id/central_volunteer"
+            android:icon="@mipmap/central_volunteer"
+            android:title="@string/central_volunteer"/>
+
+        <item
+            android:id="@+id/central_navigation"
+            android:icon="@mipmap/ic_main_page_navigation"
+            android:title="@string/central_navigation"/>
+        <item
+            android:id="@+id/central_3d_scene"
+            android:icon="@mipmap/central_3d_scene"
+            android:title="@string/central_3d_scene"/>
+
+        <item
+            android:id="@+id/central_indoor_map"
+            android:icon="@mipmap/central_indoor"
+            android:title="@string/indoor_page_name"/>
+
+        <item
+            android:id="@+id/central_related_linking"
+            android:icon="@mipmap/central_related_linking"
+            android:title="@string/central_related_linking" />
+
+    </group>
+
+    <item android:title="@string/central_name">
+        <menu>
+            <item
+                android:id="@+id/central_my_attention"
+                android:icon="@mipmap/central_my_attention"
+                android:title="@string/central_my_attention" />
+
+            <item
+                android:id="@+id/central_escape_route"
+                android:icon="@mipmap/central_escape_route"
+                android:title="@string/central_escape_route"
+                />
+
+        </menu>
+    </item>
+
+</menu>

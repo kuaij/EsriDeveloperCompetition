@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.MainPageActivity">
+
+    <com.esri.arcgisruntime.mapping.view.MapView
+        android:id="@+id/mv_main_page"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.github.clans.fab.FloatingActionMenu
+            android:id="@+id/menu_blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            fab:menu_fab_size="mini"
+            fab:menu_colorNormal="#1565C0"
+            fab:menu_colorPressed="#2272CD"
+            fab:menu_colorRipple="#62B2FF">
+
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/fab_compass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/main_compass"
+                style="@style/MenuButtonsSmall" />
+
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/fab_full_screen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/mian_full_screen"
+                style="@style/MenuButtonsSmall" />
+
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/fab_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/main_location"
+                style="@style/MenuButtonsSmall" />
+
+        </com.github.clans.fab.FloatingActionMenu>
+    </RelativeLayout>
+
+
+</FrameLayout>

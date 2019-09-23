@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".view.setting.MyProfileActivity">
+
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:layout_marginStart="10dp"-->
+        <!--android:layout_marginEnd="10dp">-->
+        <!--<TextView-->
+            <!--android:id="@+id/attention_iv_title"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="40dp"-->
+            <!--android:gravity="start|center_vertical"-->
+            <!--android:text="@string/identify_name"-->
+            <!--android:layout_alignParentStart="true"-->
+            <!--android:textColor="#000000"-->
+            <!--android:textSize="22sp" />-->
+    <!--</RelativeLayout>-->
+
+
+
+    <EditText
+        android:id="@+id/identify_et_code"
+        android:layout_marginTop="18dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:hint="@string/identify_volunteer_code_hint"
+        android:drawableRight="@drawable/user_identify_et_del"/>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp">
+
+        <RadioButton
+            android:layout_weight="1"
+            android:id="@+id/rb_volunteer"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:buttonTint="@color/colorAccent"
+            android:text="@string/register_type_volunteer"/>
+
+        <RadioButton
+            android:layout_weight="1"
+            android:id="@+id/rb_athletic"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:buttonTint="@color/colorAccent"
+            android:text="@string/register_type_athle"/>
+    </RadioGroup>
+
+    <!--<net.qiujuer.genius.ui.widget.Button-->
+        <!--android:id="@+id/identify_btn_confirm"-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@color/opinion_text_color"-->
+        <!--android:text="@string/identify_confirm"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:textSize="16sp"-->
+        <!--android:textColor="#ffffff"-->
+        <!--app:gTouchCornerRadius="15dp"-->
+        <!--app:gTouchEffect="ripple" />-->
+
+
+
+
+
+</LinearLayout>

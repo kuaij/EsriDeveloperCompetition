@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/tools">
+
+    <com.esri.arcgisruntime.mapping.view.MapView
+        android:id="@+id/escape_mapview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/escape_fab_route"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="28dp"
+            android:layout_marginBottom="20dp"
+            android:src="@mipmap/escape_route"
+            app:backgroundTint="#ff0000"
+            app:fabSize="normal" />
+
+        <com.github.clans.fab.FloatingActionMenu
+            android:id="@+id/escape_menu_blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            fab:menu_fab_size="mini"
+            fab:menu_colorNormal="#1565C0"
+            fab:menu_colorPressed="#2272CD"
+            fab:menu_colorRipple="#62B2FF">
+
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/escape_fab_fire"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/escape_fire"
+                style="@style/MenuButtonsSmall" />
+
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/escape_fab_medical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/escape_medical"
+                style="@style/MenuButtonsSmall" />
+
+        </com.github.clans.fab.FloatingActionMenu>
+
+    </RelativeLayout>
+
+</FrameLayout>

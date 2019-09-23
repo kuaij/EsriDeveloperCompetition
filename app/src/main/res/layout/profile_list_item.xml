@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="65dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/profile_tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textColor="#1D1D1C"
+        android:gravity="center_vertical"
+        android:layout_marginStart="15dp"
+        android:textSize="@dimen/profile_text_size" />
+
+    <TextView
+        android:id="@+id/profile_tv_value"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:paddingRight="@dimen/profile_text_padding"
+        android:drawablePadding="@dimen/profile_text_padding"
+        android:drawableRight="@drawable/right_img"
+        android:gravity="center_vertical"
+        android:textColor="@color/profile_value_color"
+        android:textSize="@dimen/profile_text_size"/>
+
+</RelativeLayout>

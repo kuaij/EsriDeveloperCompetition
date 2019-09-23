@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".view.central.IndoorMapActivity">
+
+    <TextView
+        android:id="@+id/indoor_tv_dialogs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:text="@string/indoor_real_enex_x"
+        android:textColor="#000000"
+        android:textSize="25sp" />
+
+    <ImageView
+        android:id="@+id/indoor_iv_dialogs"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@mipmap/indoor_real_enex_x"
+        android:background="#ffffff"/>
+
+
+</LinearLayout>

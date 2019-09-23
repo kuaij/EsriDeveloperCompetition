@@ -1,0 +1,34 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/indoor_floor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textSize="20sp"
+        android:textColor="#ffffff"/>
+
+    <ImageButton
+        android:id="@+id/indoor_ib_back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/indoor_go_back2"
+        android:layout_alignParentStart="true"/>
+
+    <net.qiujuer.genius.ui.widget.Button
+        android:id="@+id/indoor_btn_choose_spot"
+        android:layout_width="60dp"
+        android:layout_height="36dp"
+        android:background="@color/opinion_text_color"
+        android:text="@string/indoor_choose_spot"
+        android:textSize="11sp"
+        android:textColor="#ffffff"
+        android:layout_alignParentRight="true"
+        app:gTouchCornerRadius="15dp"
+        app:gTouchEffect="ripple"
+        android:layout_centerVertical="true"/>
+</RelativeLayout>

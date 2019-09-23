@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/main_page"
+        android:icon="@mipmap/ic_main_page_area"
+        android:title="@string/main_page_area" />
+
+    <item
+        android:id="@+id/main_search"
+        android:icon="@mipmap/ic_main_search"
+        android:title="@string/main_page_search" />
+
+    <item
+        android:id="@+id/setting"
+        android:icon="@mipmap/ic_main_page_setting"
+        android:title="@string/main_page_setting" />
+
+</menu>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:background="@drawable/background_gradient"
+    tools:context=".view.login.RegisterActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:textSize="32sp"
+        android:textColor="#fff"
+        android:fontFamily="@font/stxingka"
+        android:text="@string/app_name"/>
+
+    <EditText
+        android:id="@+id/register_et_name"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/register_username"
+        android:textColorHint="#80FFFFFF"
+        android:padding="8dp"
+        android:inputType="textPersonName"
+        android:background="@drawable/bg_rectangle_edittext"
+        android:textColor="#80FFFFFF"/>
+
+
+    <EditText
+        android:id="@+id/register_et_email"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/register_email"
+        android:textColorHint="#80FFFFFF"
+        android:padding="8dp"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/bg_rectangle_edittext"
+        android:textColor="#80FFFFFF"/>
+
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+
+        <RadioButton
+            android:layout_weight="1"
+            android:id="@+id/regitser_rb_type_user"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:buttonTint="@color/mediumorchid"
+            android:text="@string/register_type_user"
+            android:textColor="#ffffff" />
+
+        <RadioButton
+            android:layout_weight="1"
+            android:id="@+id/rb_guest"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="#ffffff"
+            android:buttonTint="@color/mediumorchid"
+            android:text="@string/register_type_volunteer"/>
+
+        <RadioButton
+            android:layout_weight="1"
+            android:id="@+id/rb_adm"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="#ffffff"
+            android:buttonTint="@color/mediumorchid"
+            android:text="@string/register_type_athle"/>
+    </RadioGroup>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp">
+
+        <EditText
+            android:id="@+id/register_et_identify_code"
+            android:layout_width="160dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:textColorHint="#80FFFFFF"
+            android:inputType="number"
+            android:paddingStart="8dp"
+            android:hint="@string/forget_indentify_code"
+            android:background="@drawable/bg_rectangle_edittext"
+            android:textColor="#80FFFFFF"/>
+
+        <net.qiujuer.genius.ui.widget.Button
+            android:id="@+id/register_btn_get_identify_code"
+            android:layout_width="140dp"
+            android:layout_height="match_parent"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_alignParentEnd="true"
+            android:text="@string/forget_get_identify_code"
+            android:background="@drawable/bg_rectangle_button"
+            app:gTouchEffect="ripple"/>
+
+    </RelativeLayout>
+
+
+    <EditText
+        android:id="@+id/register_et_password"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/register_password"
+        android:textColorHint="#80FFFFFF"
+        android:inputType="textPassword"
+        android:padding="8dp"
+        android:background="@drawable/bg_rectangle_edittext"
+        android:textColor="#80FFFFFF"/>
+
+    <EditText
+        android:id="@+id/register_confirm_password"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/register_confirm_password"
+        android:textColorHint="#80FFFFFF"
+        android:inputType="textPassword"
+        android:padding="8dp"
+        android:background="@drawable/bg_rectangle_edittext"
+        android:textColor="#80FFFFFF"/>
+
+    <!--<net.qiujuer.genius.ui.widget.Button-->
+        <!--android:id="@+id/register_btn_register"-->
+        <!--android:layout_marginTop="30dp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textColor="#FFFFFF"-->
+        <!--android:textSize="20sp"-->
+        <!--android:text="@string/register_page_name"-->
+        <!--android:background="@drawable/bg_rectangle_button"-->
+        <!--app:gTouchEffect="ripple"/>-->
+
+    <com.xiaok.winterolympic.custom.ProgressButton
+        android:id="@+id/register_btn_register"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:text="@string/register_page_name" />
+
+
+</LinearLayout>

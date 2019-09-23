@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".view.video.RecordVideoActivity">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/record_second_color"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/record_et_descripation"
+                android:layout_weight="5"
+                android:layout_width="0dp"
+                android:gravity="start|top"
+                android:hint="输入视频描述..."
+                android:textColorHint="#bfbfbf"
+                android:textSize="16sp"
+                android:textColor="#ffffff"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_height="match_parent" />
+
+            <VideoView
+                android:id="@+id/record_vv_cover"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="10dp"
+                android:src="@mipmap/record_pic_test"
+                android:layout_weight="2" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@color/record_first_color">
+
+            <TextView
+                android:id="@+id/record_tv_position"
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="位置"
+                android:drawablePadding="10dp"
+                android:textColor="#ffffff"
+                android:textSize="20sp"
+                android:drawableLeft="@drawable/record_position_picture"/>
+
+            <TextView
+                android:id="@+id/record_tv_topic"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="话题"
+                android:drawablePadding="10dp"
+                android:textColor="#ffffff"
+                android:textSize="20sp"
+                android:drawableLeft="@drawable/record_topic_picture"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/record_iv_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="70dp"
+            android:layout_marginEnd="22dp"
+            android:src="@mipmap/ic_record_play" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="150dp"
+            android:layout_alignParentEnd="true">
+
+            <net.qiujuer.genius.ui.widget.Button
+                android:id="@+id/record_btn_edit"
+                android:layout_width="45dp"
+                android:layout_height="30dp"
+                android:background="@drawable/record_video_edit_button"
+                android:textSize="12sp"
+                android:layout_marginEnd="10dp"
+                android:text="编辑"/>
+
+            <net.qiujuer.genius.ui.widget.Button
+                android:id="@+id/record_btn_restart"
+                android:layout_width="45dp"
+                android:layout_height="30dp"
+                android:background="@drawable/record_video_edit_button"
+                android:textSize="12sp"
+                android:text="重拍"/>
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/record_tv_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:drawableTop="@drawable/record_download_picture"
+                android:drawablePadding="5dp"
+                android:text="存本地"
+                android:textColor="#ffffff"
+                android:textSize="16sp" />
+
+            <net.qiujuer.genius.ui.widget.Button
+                android:id="@+id/record_btn_upload"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/record_last_color"
+                android:layout_weight="1"
+                android:text="发布"
+                android:textColor="#ffffff"
+                android:textSize="18sp" />
+
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</FrameLayout>

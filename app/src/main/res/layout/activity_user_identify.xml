@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.profile.UserIdentifyActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:background="@color/identify_button_background"
+        android:padding="10dp">
+
+        <net.qiujuer.genius.ui.widget.Button
+            android:id="@+id/identify_btn_volunteer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/identify_button_background"
+            android:textColor="@color/identify_button_text_color"
+            android:textSize="15sp"
+            android:enabled="false"
+            android:text="@string/identify_volunteer_name"/>
+
+        <net.qiujuer.genius.ui.widget.Button
+            android:id="@+id/identify_btn_athletic"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/opinion_text_color"
+            android:textColor="@color/identify_button_text_color"
+            android:textSize="14sp"
+            android:text="@string/identify_athletic_name"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/identify_seat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"/>
+
+
+</LinearLayout>

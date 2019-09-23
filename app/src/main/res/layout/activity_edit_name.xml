@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.profile.EditNameActivity">
+
+    <EditText
+        android:layout_marginTop="15dp"
+        android:id="@+id/profile_et_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <net.qiujuer.genius.ui.widget.Button
+        android:id="@+id/profile_save_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:background="@drawable/button_clicked"
+        android:text="@string/profile_save_name"/>
+
+</LinearLayout>

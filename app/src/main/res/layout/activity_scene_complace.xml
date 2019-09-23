@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.central.SceneComplaceActivity">
+
+    <com.esri.arcgisruntime.mapping.view.SceneView
+        android:id="@+id/scene_sceneview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.github.clans.fab.FloatingActionMenu
+            android:id="@+id/menu_blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            fab:menu_fab_size="mini"
+            fab:menu_colorNormal="#1565C0"
+            fab:menu_colorPressed="#2272CD"
+            fab:menu_colorRipple="#62B2FF">
+
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/scene_fab_beijing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/MenuButtonsSmall" />
+
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/scene_fab_yanqing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/MenuButtonsSmall" />
+
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/scene_fab_zhangjiakou"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/MenuButtonsSmall" />
+
+        </com.github.clans.fab.FloatingActionMenu>
+
+    </RelativeLayout>
+
+
+
+</FrameLayout>
