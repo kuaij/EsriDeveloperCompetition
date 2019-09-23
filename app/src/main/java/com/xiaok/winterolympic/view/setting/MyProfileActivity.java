@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,11 +17,16 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
@@ -218,7 +224,7 @@ public class MyProfileActivity extends AppCompatActivity implements AdapterView.
         switch (position){
             //修改头像
             case 0:
-                selectPhotoType();
+                initPopWindow(view);
                 break;
             //用户名
             case 1:
@@ -246,15 +252,77 @@ public class MyProfileActivity extends AppCompatActivity implements AdapterView.
     }
 
     //选择图片来源（相机/相册）
-    private void selectPhotoType(){
-        //通过对话框确认用户通过相机还是使用相册
-        AlertDialog.Builder alertdialogbuilder = new AlertDialog.Builder(MyProfileActivity.this);
-        alertdialogbuilder.setMessage("请选择图片来源:");
-        alertdialogbuilder.setPositiveButton("相机", click_camera);
-        alertdialogbuilder.setNegativeButton("相册", click_gallery);
-        AlertDialog alertdialog1 = alertdialogbuilder.create();
-        alertdialog1.show();
+    private void initPopWindow(View v) {
+        View view = LayoutInflater.from(mContext).inflate(R.layout.avatar_popup_item, null, false);
+        Button btn_camera = view.findViewById(R.id.btn_avatar_camera);
+        Button btn_gallery = view.findViewById(R.id.btn_avatar_gallery);
+        Button btn_cancel = view.findViewById(R.id.btn_avatar_cancel);
+        //1.构造一个PopupWindow，参数依次是加载的View，宽高
+        final PopupWindow popWindow = new PopupWindow(view,
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+
+        popWindow.setAnimationStyle(R.anim.anim_pop);  //设置加载动画
+
+        popWindow.setTouchable(true);
+        popWindow.setTouchInterceptor(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return false;
+                // 这里如果返回true的话，touch事件将被拦截
+                // 拦截后 PopupWindow的onTouchEvent不被调用，这样点击外部区域无法dismiss
+            }
+        });
+
+        popWindow.setFocusable(true);
+
+//        // 实例化一个ColorDrawable颜色为半透明
+//        ColorDrawable dw = new ColorDrawable(0xb0000000);
+//        popWindow.setBackgroundDrawable(dw);
+
+
+        // 设置popWindow的显示和消失动画
+        popWindow.setAnimationStyle(R.style.mypopwindow_anim_style);
+        // 在底部显示
+        popWindow.showAtLocation(v, Gravity.BOTTOM, 0, 0);
+
+
+        //相机
+        btn_camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ContextCompat.checkSelfPermission(MyProfileActivity.this,
+                        Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(MyProfileActivity.this, new String[]{Manifest.permission.CAMERA}, 1);
+                } else {
+                    Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+                    startActivityForResult(intent,TAKE_PHOTO);
+                }
+            }
+        });
+        //相册
+        btn_gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(new Intent(MyProfileActivity.this, ChangeAvatarActivity.class),OPEN_GALLERY);
+            }
+        });
+        //取消
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popWindow.dismiss();
+            }
+        });
     }
+//    private void selectPhotoType(){
+//        //通过对话框确认用户通过相机还是使用相册
+//        AlertDialog.Builder alertdialogbuilder = new AlertDialog.Builder(MyProfileActivity.this);
+//        alertdialogbuilder.setMessage("请选择图片来源:");
+//        alertdialogbuilder.setPositiveButton("相机", click_camera);
+//        alertdialogbuilder.setNegativeButton("相册", click_gallery);
+//        AlertDialog alertdialog1 = alertdialogbuilder.create();
+//        alertdialog1.show();
+//    }
 
     //选择图片来源对话框两种方式的具体实现
     private DialogInterface.OnClickListener click_camera = new DialogInterface.OnClickListener() {

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <net.qiujuer.genius.ui.widget.Button
+        android:id="@+id/btn_avatar_camera"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="相机"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:background="#ffffff"
+        android:textColor="#000000"
+        app:gTouchEffect="press"/>
+
+    <net.qiujuer.genius.ui.widget.Button
+        android:id="@+id/btn_avatar_gallery"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:text="相册"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:background="#ffffff"
+        android:textColor="#000000"
+        app:gTouchEffect="press"/>
+
+    <net.qiujuer.genius.ui.widget.Button
+        android:id="@+id/btn_avatar_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:text="取消"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:background="#ffffff"
+        android:textColor="#000000"
+        app:gTouchEffect="press"/>
+
+
+
+</LinearLayout>
