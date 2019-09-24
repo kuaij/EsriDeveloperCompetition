@@ -199,7 +199,8 @@ public class VideoBrowerAdapter extends BaseAdapter {
         view.setTextSize(14);
         view.setTextColor(mContext.getColor(R.color.record_comment_text));
         view.setText("xiaok:"+commentStr);
-        holder.mContainer.addView(view,commentIndex++,lp);
+        int index = holder.mContainer.getChildCount();
+        holder.mContainer.addView(view,index-1,lp);
     }
 
     private void addThumpUpView(ViewHolder holder){
