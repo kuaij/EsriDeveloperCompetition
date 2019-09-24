@@ -90,7 +90,8 @@
         <activity
             android:name=".view.video.VideoBrowerActivity"
             android:theme="@style/RecordVideoTheme" />
-        <activity android:name=".view.profile.BigAvatarActivity"></activity>
+        <activity android:name=".view.profile.BigAvatarActivity"
+            android:theme="@style/RecordVideoTheme"></activity>
     </application>
 
 </manifest>
