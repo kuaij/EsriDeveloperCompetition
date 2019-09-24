@@ -306,36 +306,7 @@ public class MyProfileActivity extends AppCompatActivity implements AdapterView.
             }
         });
     }
-//    private void selectPhotoType(){
-//        //通过对话框确认用户通过相机还是使用相册
-//        AlertDialog.Builder alertdialogbuilder = new AlertDialog.Builder(MyProfileActivity.this);
-//        alertdialogbuilder.setMessage("请选择图片来源:");
-//        alertdialogbuilder.setPositiveButton("相机", click_camera);
-//        alertdialogbuilder.setNegativeButton("相册", click_gallery);
-//        AlertDialog alertdialog1 = alertdialogbuilder.create();
-//        alertdialog1.show();
-//    }
 
-    //选择图片来源对话框两种方式的具体实现
-    private DialogInterface.OnClickListener click_camera = new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface arg0, int arg1) {
-            if (ContextCompat.checkSelfPermission(MyProfileActivity.this,
-                    Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(MyProfileActivity.this, new String[]{Manifest.permission.CAMERA}, 1);
-            } else {
-                Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-                startActivityForResult(intent,TAKE_PHOTO);
-            }
-
-        }
-    };
-    private DialogInterface.OnClickListener click_gallery = new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface arg0, int arg1) {
-            startActivityForResult(new Intent(MyProfileActivity.this, ChangeAvatarActivity.class),OPEN_GALLERY);
-        }
-    };
 
 
     //权限申请回调

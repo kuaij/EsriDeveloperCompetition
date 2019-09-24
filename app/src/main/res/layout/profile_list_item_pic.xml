@@ -5,7 +5,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <TextView
-        android:id="@+id/profile_tv_name"
+        android:id="@+id/profile_tv_name2"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:textColor="#1D1D1C"
@@ -21,7 +21,7 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/profile_iv_avatar"
+            android:id="@+id/profile_iv_avatar2"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"

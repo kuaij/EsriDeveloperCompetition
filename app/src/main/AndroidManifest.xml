@@ -87,8 +87,10 @@
             android:name=".view.video.RecordVideoActivity"
             android:theme="@style/RecordVideoTheme" />
         <activity android:name=".view.search.BuyTicketsActivity" />
-        <activity android:name=".view.video.VideoBrowerActivity"
-            android:theme="@style/RecordVideoTheme"></activity>
+        <activity
+            android:name=".view.video.VideoBrowerActivity"
+            android:theme="@style/RecordVideoTheme" />
+        <activity android:name=".view.profile.BigAvatarActivity"></activity>
     </application>
 
 </manifest>
