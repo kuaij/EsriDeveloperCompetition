@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
@@ -372,6 +373,12 @@ public class MyProfileActivity extends AppCompatActivity implements AdapterView.
                 .show();
     }
 
+    private void syncUserAvatar(Bitmap bitmap){
+        View view = View.inflate(MyProfileActivity.this,R.layout.profile_list_item_pic,null);
+        ImageView iv_avatar = view.findViewById(R.id.profile_iv_avatar2);
+        iv_avatar.setImageBitmap(bitmap);
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -395,6 +402,7 @@ public class MyProfileActivity extends AppCompatActivity implements AdapterView.
             //拍照，并回调照片
             case TAKE_PHOTO:
                 Bitmap cameraPhoto = data.getParcelableExtra("data");
+                syncUserAvatar(cameraPhoto);
                 UIAyncManager.PostChangeByModel( this,cameraPhoto);
                 break;
             //回调相册图片
