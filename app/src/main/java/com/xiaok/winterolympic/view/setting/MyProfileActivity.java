@@ -72,12 +72,6 @@ public class MyProfileActivity extends AppCompatActivity implements AdapterView.
     private boolean isVolunteer = false;
     private boolean isAthletic = false;
 
-    private static final int DELETE_TEXT = 5;
-    private static final int PLEASE_SELECT_TYPE = 6;
-    private static final int PLEASE_ENTER_CODE = 7;
-    private static final int WRONG_CODE = 8;
-    private static final int IDENTIFY_SUCCESS = 9;
-
 
 
     @Override
