@@ -21,7 +21,6 @@ public class UserProfileAdapter extends BaseAdapter {
     private LinkedList<UserProfile> aData;
     private Context mContext;
 
-    final int VIEW_TYPE = 3;
     final int TYPE_1 = 0;
     final int TYPE_2 = 1;
 
