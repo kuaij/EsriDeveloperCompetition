@@ -2,6 +2,7 @@ package com.xiaok.winterolympic.adapt;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import com.xiaok.winterolympic.R;
 import com.xiaok.winterolympic.model.UserProfile;
 import com.xiaok.winterolympic.view.profile.BigAvatarActivity;
 
+import java.io.File;
 import java.util.LinkedList;
 
 public class UserProfileAdapter extends BaseAdapter {
@@ -94,6 +96,10 @@ public class UserProfileAdapter extends BaseAdapter {
         switch (type){
             case TYPE_1:
                 holder1.tv_item_name.setText(aData.get(position).getaName());
+                File cachePic = new File(aData.get(position).getaValue());
+                if (cachePic.exists()){
+                    holder1.iv_avatar.setImageURI(Uri.fromFile(cachePic)); //设置头像路径
+                }
                 holder1.iv_avatar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

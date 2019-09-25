@@ -44,6 +44,9 @@ import com.xiaok.winterolympic.view.profile.MoreProfileActivity;
 
 import net.qiujuer.genius.ui.widget.Button;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -96,7 +99,7 @@ public class MyProfileActivity extends AppCompatActivity implements AdapterView.
         names = new String[]{getString(R.string.profile_photo),getString(R.string.profile_name),
                 getString(R.string.profile_email),getString(R.string.profile_user_type),getString(R.string.profile_more)};
 
-        values = new String[]{getString(R.string.profile_change_photo),"xiaok",
+        values = new String[]{getCacheDir() + "/avatar.jpg","xiaok",
                 "1298727334@qq.com",getString(R.string.profile_user_identify),""};
 
         //初始化同步用户名和邮箱
@@ -374,9 +377,43 @@ public class MyProfileActivity extends AppCompatActivity implements AdapterView.
     }
 
     private void syncUserAvatar(Bitmap bitmap){
-        View view = View.inflate(MyProfileActivity.this,R.layout.profile_list_item_pic,null);
-        ImageView iv_avatar = view.findViewById(R.id.profile_iv_avatar2);
-        iv_avatar.setImageBitmap(bitmap);
+        //对图片进行裁剪，保留中间部分，保证形状为正方形
+        int h = bitmap.getHeight();
+        int w = bitmap.getWidth();
+        int newHeight,newWidth;
+        Bitmap newBitmap;
+        if (h >= w){
+            newHeight = w;
+            newWidth = w;
+            newBitmap = Bitmap.createBitmap(bitmap,0,(h-w)/2,newWidth,newHeight);
+        }else {
+            newHeight = h;
+            newWidth = h;
+            newBitmap = Bitmap.createBitmap(bitmap,(w-h)/2,0,newWidth,newHeight);
+        }
+        //先将照片缓存到本地
+        File filePic;
+        try {
+            filePic = new File(getCacheDir() + "/avatar.jpg");
+            if (!filePic.exists()) {
+                filePic.getParentFile().mkdirs();
+                filePic.createNewFile();
+            }
+            FileOutputStream fos = new FileOutputStream(filePic);
+            newBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            fos.flush();
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        List<UserProfile> aData = new LinkedList<>();
+        for (int i=0;i<names.length;i++){
+            aData.add(new UserProfile(names[i],values[i]));
+        }
+        list_show.setAdapter(new UserProfileAdapter((LinkedList<UserProfile>) aData,MyProfileActivity.this));
+        list_show.setOnItemClickListener(this);
+
     }
 
 

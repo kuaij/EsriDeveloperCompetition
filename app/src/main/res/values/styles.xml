@@ -61,7 +61,7 @@
         <item name="android:layout_marginTop">8dp</item>
     </style>
 
-    <!--  修改头像弹出动画 -->
+    <!--  修改头像 popupWindow弹出动画 -->
     <style name="mypopwindow_anim_style">
         <item name="android:windowEnterAnimation">@anim/pop_show_anim</item>
         <!-- 指定显示的动画xml -->
