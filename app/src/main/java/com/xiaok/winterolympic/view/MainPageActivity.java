@@ -65,8 +65,10 @@ import net.lingala.zip4j.exception.ZipException;
 import net.qiujuer.genius.ui.widget.Button;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -154,6 +156,7 @@ public class MainPageActivity extends AppCompatActivity implements NavigationVie
         toggle.syncState();
 
         new CopyDataAsyncTask().execute();
+        new RelaseDateTask().execute(); //释放初始头像资源
 
         initFragment();//初始化fragment
 
@@ -651,6 +654,41 @@ public class MainPageActivity extends AppCompatActivity implements NavigationVie
 
 
         return true;
+    }
+
+
+    //个人信息界面显示的头像资源释放 todo 正式接入服务器后删除
+    private class RelaseDateTask extends AsyncTask<Void, String, Boolean> {
+
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+            try {
+                relaseDate(String.valueOf(getCacheDir())+"/avatar.jpg");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+    }
+
+
+    private void relaseDate(String strOutFileName) throws IOException {
+        InputStream myInput;
+        OutputStream myOutput = new FileOutputStream(strOutFileName);
+        myInput = getAssets().open("head_picture.jpg");
+        byte[] buffer = new byte[1024];
+        int length = myInput.read(buffer);
+        while(length > 0)
+        {
+            myOutput.write(buffer, 0, length);
+            length = myInput.read(buffer);
+        }
+
+        myOutput.flush();
+        myInput.close();
+        myOutput.close();
     }
 
 
