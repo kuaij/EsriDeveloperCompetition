@@ -23,6 +23,10 @@ import com.xiaok.winterolympic.view.setting.AboutAppActivity;
 import com.xiaok.winterolympic.view.setting.MyProfileActivity;
 import com.xiaok.winterolympic.view.setting.OpinionActivity;
 
+import java.io.File;
+
+import static com.blankj.utilcode.util.FileUtils.deleteDir;
+
 public class SettingActivity extends AppCompatActivity {
 
     String[] data = null;
@@ -133,7 +137,7 @@ public class SettingActivity extends AppCompatActivity {
             progressDialog.setTitle("缓存清理");
             progressDialog.setMessage("正在准备执行清理...");
             progressDialog.setCancelable(false);
-            progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
             progressDialog.setMax(100);
             progressDialog.show();
         }
@@ -142,12 +146,12 @@ public class SettingActivity extends AppCompatActivity {
         protected Boolean doInBackground(Void... voids) {
 
             publishProgress("正在执行清理操作...");
-            SystemClock.sleep(2500);
+            SystemClock.sleep(500);
 
             publishProgress("正在清除缓存文件...");
-            SystemClock.sleep(2000);
+            boolean isCleanOK = deleteFilesByDirectory(getCacheDir());
 
-            return true;
+            return isCleanOK;
         }
 
         @Override
@@ -162,12 +166,33 @@ public class SettingActivity extends AppCompatActivity {
             super.onPostExecute(aBoolean);
             progressDialog.dismiss();
             if (aBoolean) {
-                Toast.makeText(SettingActivity.this, "缓存清理成功", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SettingActivity.this, "缓存已清除！", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(SettingActivity.this, "缓存清理失败，请稍后重试", Toast.LENGTH_SHORT).show();
 
             }
         }
     }
+
+
+    private boolean deleteFilesByDirectory(File directory) {
+        /*if (directory != null && directory.exists() && directory.isDirectory()) {
+            for (File item : directory.listFiles()) {
+                item.delete();
+            }
+        }*/
+
+        if (directory != null && directory.isDirectory()) {
+            String[] children = directory.list();
+            for (int i = 0; i < children.length; i++) {
+                boolean success = deleteDir(new File(directory, children[i]));
+                if (!success) {
+                    return false;
+                }
+            }
+        }
+        return directory.delete();
+    }
+
 
 }
