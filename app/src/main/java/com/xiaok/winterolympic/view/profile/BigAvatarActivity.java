@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
@@ -21,6 +22,8 @@ import com.orhanobut.logger.Logger;
 import com.xiaok.winterolympic.R;
 
 import net.qiujuer.genius.ui.widget.Button;
+
+import java.io.File;
 
 public class BigAvatarActivity extends AppCompatActivity {
 
@@ -42,6 +45,12 @@ public class BigAvatarActivity extends AppCompatActivity {
 
         mContainer = findViewById(R.id.big_mContainer);
         iv_big_picture = findViewById(R.id.iv_big_pic);
+
+        File cachePic = new File(getCacheDir()+"/avatar.jpg");
+        if (cachePic.exists()){
+            iv_big_picture.setImageURI(Uri.fromFile(cachePic)); //设置头像路径
+        }
+
         iv_big_picture.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
