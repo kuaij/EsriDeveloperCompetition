@@ -53,6 +53,7 @@ import com.xiaok.winterolympic.view.central.NavigationActivity;
 import com.xiaok.winterolympic.view.central.RelatedLinkingActivity;
 import com.xiaok.winterolympic.view.central.SceneComplaceActivity;
 import com.xiaok.winterolympic.view.central.VolunteerActivity;
+import com.xiaok.winterolympic.view.main.DynamicFragment;
 import com.xiaok.winterolympic.view.main.MainPageFragment;
 import com.xiaok.winterolympic.view.main.MyCentralFragment;
 import com.xiaok.winterolympic.view.video.RecordVideoActivity;
@@ -88,6 +89,7 @@ public class MainPageActivity extends AppCompatActivity implements NavigationVie
 
     private MainPageFragment mainPageFragment;
     private SearchCompetitionFragment navigationFragment;
+//    private DynamicFragment dynamicFragment;
     private MyCentralFragment settingeFragment;
     private Fragment[] fragments;
     private BottomNavigationView bottomNavigationView;
@@ -381,6 +383,7 @@ public class MainPageActivity extends AppCompatActivity implements NavigationVie
 
         mainPageFragment = new MainPageFragment();
         navigationFragment = new SearchCompetitionFragment();
+//        dynamicFragment = new DynamicFragment();
         settingeFragment = new MyCentralFragment();
         fragments = new Fragment[]{mainPageFragment, navigationFragment, settingeFragment};
         lastFragment = 0;
@@ -397,6 +400,7 @@ public class MainPageActivity extends AppCompatActivity implements NavigationVie
 
             switch (item.getItemId())
             {
+                //主页
                 case R.id.main_page:
                 {
                     if(lastFragment!=0)
@@ -406,6 +410,7 @@ public class MainPageActivity extends AppCompatActivity implements NavigationVie
                     }
                     return true;
                 }
+                //搜索
                 case R.id.main_search:
                 {
                     if(lastFragment!=1)
@@ -417,6 +422,19 @@ public class MainPageActivity extends AppCompatActivity implements NavigationVie
 
                     return true;
                 }
+//                //动态
+//                case R.id.dynatic:
+//                {
+//                    if(lastFragment!=2)
+//                    {
+//                        switchFragment(lastFragment,2);
+//                        lastFragment=2;
+//
+//                    }
+//
+//                    return true;
+//                }
+                //设置
                 case R.id.setting:
                 {
                     if(lastFragment!=2)

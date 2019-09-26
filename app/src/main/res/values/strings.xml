@@ -141,6 +141,7 @@
     <string name="main_page_area">赛区</string>
     <string name="main_page_navigation">导航</string>
     <string name="main_page_setting">设置</string>
+    <string name="main_page_dynatic">动态</string>
     <string name="main_page_search">搜索</string>
     <string name="main_record_video">发布视频</string>
     <string name="main_page_help">帮助</string>

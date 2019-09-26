@@ -10,6 +10,11 @@
         android:icon="@mipmap/ic_main_search"
         android:title="@string/main_page_search" />
 
+    <!--<item-->
+        <!--android:id="@+id/dynatic"-->
+        <!--android:icon="@mipmap/ic_main_dynatic"-->
+        <!--android:title="@string/main_page_dynatic" />-->
+
     <item
         android:id="@+id/setting"
         android:icon="@mipmap/ic_main_page_setting"
