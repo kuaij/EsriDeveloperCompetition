@@ -13,7 +13,7 @@ public class MyApplication extends Application {
 
     public static Context sInstance;
     public static int event_name_id = R.string.search_no_limit;
-    public static String userName = "admin";
+    public static String userName = "xiaok";
     public static String userEmail = "kuaijian.huc@qq.com";
 
     @Override

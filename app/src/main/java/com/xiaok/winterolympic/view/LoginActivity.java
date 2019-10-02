@@ -126,7 +126,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void getUserInfo(){
         SharedPreferences sp1 = getSharedPreferences("user_config",MODE_PRIVATE);
-        currentUsername1 = sp1.getString("usename","error");
+        currentUsername1 = sp1.getString("username","error");
         password1 = sp1.getString("password","error");
         SharedPreferences sp2 = getSharedPreferences("user_config_01",MODE_PRIVATE);
         currentUsername2 = sp2.getString("username","error");
