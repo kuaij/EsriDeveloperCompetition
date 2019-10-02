@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -31,6 +32,7 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.orhanobut.logger.Logger;
 import com.xiaok.winterolympic.MyApplication;
 import com.xiaok.winterolympic.R;
 import com.xiaok.winterolympic.adapt.UserProfileAdapter;
@@ -133,44 +135,26 @@ public class MyProfileActivity extends AppCompatActivity implements AdapterView.
         rbVolunteer = dialogsView.findViewById(R.id.rb_volunteer);
         rbAthletic = dialogsView.findViewById(R.id.rb_athletic);
 
-//        //输入框右侧删除图标响应事件
-//        etIdentifyCode.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                // et.getCompoundDrawables()得到一个长度为4的数组，分别表示左右上下四张图片
-//                Drawable drawable = etIdentifyCode.getCompoundDrawables()[2];
-//                //如果右边没有图片，不再处理
-//                if (drawable == null)
-//                    return false;
-//                //如果不是按下事件，不再处理
-//                if (event.getAction() != MotionEvent.ACTION_UP)
-//                    return false;
-//                if (event.getX() > etIdentifyCode.getWidth()
-//                        - etIdentifyCode.getPaddingRight()
-//                        - drawable.getIntrinsicWidth()){
-//                    sendUIMessage(DELETE_TEXT);
-//                }
-//                return false;
-//            }
-//        });
-//        //认证
-//        btnConfirm.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Logger.e("按钮可以点击");
-//                isVolunteer = rbVolunteer.isChecked();
-//                isAthletic = rbAthletic.isChecked();
-//                if (isAthletic || isVolunteer){
-//                    sendUIMessage(PLEASE_SELECT_TYPE);
-//                }else if (etIdentifyCode.getText().toString().trim() == null){
-//                    sendUIMessage(PLEASE_ENTER_CODE);
-//                }else if (etIdentifyCode.getText().toString().trim().contains("000")){
-//                    sendUIMessage(IDENTIFY_SUCCESS);
-//                }else {
-//                    sendUIMessage(WRONG_CODE);
-//                }
-//            }
-//        });
+        //输入框右侧删除图标响应事件
+        etIdentifyCode.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                // et.getCompoundDrawables()得到一个长度为4的数组，分别表示左右上下四张图片
+                Drawable drawable = etIdentifyCode.getCompoundDrawables()[2];
+                //如果右边没有图片，不再处理
+                if (drawable == null)
+                    return false;
+                //如果不是按下事件，不再处理
+                if (event.getAction() != MotionEvent.ACTION_UP)
+                    return false;
+                if (event.getX() > etIdentifyCode.getWidth()
+                        - etIdentifyCode.getPaddingRight()
+                        - drawable.getIntrinsicWidth()){
+                    Logger.e("删除文本");
+                }
+                return false;
+            }
+        });
     }
 
 
@@ -420,31 +404,35 @@ public class MyProfileActivity extends AppCompatActivity implements AdapterView.
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode){
-            //修改用户名
-            case CHANGE_NAME:
-                if (data != null){
+        if (data != null){
+            switch (requestCode){
+                //修改用户名
+                case CHANGE_NAME:
+
                     String newName = data.getStringExtra("newName"); //获取回传回来的用户名
-                    values[1] = newName; //更新用户名
-                    List<UserProfile> aData = new LinkedList<>();
-                    for (int i=0;i<names.length;i++){
-                        aData.add(new UserProfile(names[i],values[i]));
+                    if (newName != null){
+                        values[1] = newName; //更新用户名
+                        List<UserProfile> aData = new LinkedList<>();
+                        for (int i=0;i<names.length;i++){
+                            aData.add(new UserProfile(names[i],values[i]));
+                        }
+
+                        list_show.setAdapter(new UserProfileAdapter((LinkedList<UserProfile>)aData,MyProfileActivity.this));
+                        list_show.setOnItemClickListener(this);
                     }
 
-                    list_show.setAdapter(new UserProfileAdapter((LinkedList<UserProfile>)aData,MyProfileActivity.this));
-                    list_show.setOnItemClickListener(this);
-
-                }
-                break;
-            //拍照，并回调照片
-            case TAKE_PHOTO:
-                Bitmap cameraPhoto = data.getParcelableExtra("data");
-                syncUserAvatar(cameraPhoto);
-                UIAyncManager.PostChangeByModel( this,cameraPhoto);
-                break;
-            //回调相册图片
-            case OPEN_GALLERY:
-                break;
+                    break;
+                //拍照，并回调照片
+                case TAKE_PHOTO:
+                    Bitmap cameraPhoto = data.getParcelableExtra("data");
+                    syncUserAvatar(cameraPhoto);
+                    UIAyncManager.PostChangeByModel( this,cameraPhoto);
+                    break;
+                //回调相册图片
+                case OPEN_GALLERY:
+                    break;
+            }
         }
+
     }
 }

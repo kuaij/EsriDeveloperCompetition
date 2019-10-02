@@ -10,7 +10,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.amap.api.maps2d.model.Text;
 import com.xiaok.winterolympic.R;
 import com.xiaok.winterolympic.model.UserProfile;
 import com.xiaok.winterolympic.view.profile.BigAvatarActivity;
@@ -72,14 +71,17 @@ public class UserProfileAdapter extends BaseAdapter {
                     holder1 = new ViewHolder1();
                     holder1.tv_item_name = convertView.findViewById(R.id.profile_tv_name2);
                     holder1.iv_avatar = convertView.findViewById(R.id.profile_iv_avatar2);
+                    convertView.setTag(holder1);
                     break;
                 case TYPE_2:
                     convertView = LayoutInflater.from(mContext).inflate(R.layout.profile_list_item,parent,false);
                     holder2 = new ViewHolder2();
                     holder2.tv_item_name2 = convertView.findViewById(R.id.profile_tv_name);
                     holder2.tv_item_value = convertView.findViewById(R.id.profile_tv_value);
+                    convertView.setTag(holder2);
                     break;
             }
+
 
         }else {
             switch (type){

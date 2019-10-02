@@ -676,7 +676,7 @@ public class IndoorMapActivity extends AppCompatActivity {
     }
 
 
-    //室内地图用户触摸监视器
+    //室内地图用户触摸监听
     private class IndoorTouchListener extends DefaultMapViewOnTouchListener {
 
         public IndoorTouchListener(Context context, MapView mapView) {

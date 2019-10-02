@@ -28,10 +28,7 @@ import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.xiaok.winterolympic.R;
-import com.xiaok.winterolympic.model.VideoBrower;
-import com.xiaok.winterolympic.utils.FileUtils;
 import com.xiaok.winterolympic.utils.ToastUtils;
-import com.xiaok.winterolympic.view.login.RegisterActivity;
 
 import net.qiujuer.genius.ui.widget.Button;
 
