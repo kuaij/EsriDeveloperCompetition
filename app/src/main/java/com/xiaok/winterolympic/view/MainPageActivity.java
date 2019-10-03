@@ -37,6 +37,7 @@ import android.widget.Toast;
 
 import com.blankj.utilcode.util.CleanUtils;
 import com.blankj.utilcode.util.FileIOUtils;
+import com.esri.arcgisruntime.geometry.Point;
 import com.orhanobut.logger.Logger;
 import com.xiaok.winterolympic.MyApplication;
 import com.xiaok.winterolympic.R;
@@ -53,13 +54,12 @@ import com.xiaok.winterolympic.view.central.NavigationActivity;
 import com.xiaok.winterolympic.view.central.RelatedLinkingActivity;
 import com.xiaok.winterolympic.view.central.SceneComplaceActivity;
 import com.xiaok.winterolympic.view.central.VolunteerActivity;
-import com.xiaok.winterolympic.view.main.DynamicFragment;
 import com.xiaok.winterolympic.view.main.MainPageFragment;
 import com.xiaok.winterolympic.view.main.MyCentralFragment;
-import com.xiaok.winterolympic.view.video.RecordVideoActivity;
 import com.xiaok.winterolympic.view.main.SearchCompetitionFragment;
 import com.xiaok.winterolympic.view.setting.HelpActivity;
 import com.xiaok.winterolympic.view.setting.MyProfileActivity;
+import com.xiaok.winterolympic.view.video.RecordVideoActivity;
 
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
@@ -87,6 +87,7 @@ public class MainPageActivity extends AppCompatActivity implements NavigationVie
     private static final int NOTIFY_CODE_ATHLETIC = 1;
     private static final int NOTIFY_CODE_ITEM = 2;
 
+    public Point point;
     private MainPageFragment mainPageFragment;
     private SearchCompetitionFragment navigationFragment;
 //    private DynamicFragment dynamicFragment;
@@ -156,6 +157,8 @@ public class MainPageActivity extends AppCompatActivity implements NavigationVie
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
+        point = new Point(116.38376139624,39.997936144); //初始化为国家会议中心的坐标
 
         new CopyDataAsyncTask().execute();
         new RelaseDateTask().execute(); //释放初始头像资源
@@ -279,7 +282,11 @@ public class MainPageActivity extends AppCompatActivity implements NavigationVie
                 break;
             //路线规划
             case R.id.central_navigation:
-                startActivity(new Intent(MainPageActivity.this, NavigationActivity.class));
+                Intent naviIntent = new Intent(MainPageActivity.this, NavigationActivity.class);
+                naviIntent.putExtra("x",point.getX());  //传递当前位置坐标
+                naviIntent.putExtra("y",point.getY());
+                startActivity(naviIntent);
+
                 break;
             //相关链接
             case R.id.central_related_linking:

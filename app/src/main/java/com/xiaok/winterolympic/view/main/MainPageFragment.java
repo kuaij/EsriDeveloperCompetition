@@ -38,6 +38,7 @@ import com.xiaok.winterolympic.utils.DateSyncUtils;
 import com.xiaok.winterolympic.utils.FileUtils;
 import com.xiaok.winterolympic.utils.LayerUtils;
 import com.xiaok.winterolympic.utils.ToastUtils;
+import com.xiaok.winterolympic.view.MainPageActivity;
 import com.xiaok.winterolympic.view.central.IndoorMapActivity;
 import com.xiaok.winterolympic.view.central.NavigationActivity;
 import com.xiaok.winterolympic.view.central.SceneComplaceActivity;
@@ -94,10 +95,13 @@ public class MainPageFragment extends Fragment {
 
     private double currentScale = 5900000f;
 
+    private double currentLongitude;
+    private double currentLatitude;
+
     private Handler mUiHandler = new Handler();
     private String path;
 
-
+    private MainPageActivity mainActivity;
 
 
 
@@ -207,16 +211,18 @@ public class MainPageFragment extends Fragment {
                 }
             }
         });
-
+        //初始化Activity
+        mainActivity = (MainPageActivity) getActivity();
         mLocationDisplay.startAsync(); //开始显示位置
         mLocationDisplay.addLocationChangedListener(new LocationDisplay.LocationChangedListener() {
             @Override
             public void onLocationChanged(LocationDisplay.LocationChangedEvent locationChangedEvent) {
                 LocationDataSource.Location location = mLocationDisplay.getLocation();
                 Point point = location.getPosition();
-                double x = point.getX();
-                double y = point.getY();
-                Logger.e("X:"+x+"\n"+"Y:"+y);
+                currentLongitude = point.getX(); //经度
+                currentLatitude = point.getY(); //纬度
+                mainActivity.point = new Point(currentLongitude,currentLatitude);
+                Logger.e("X:"+currentLongitude+"\n"+"Y:"+currentLatitude);
             }
         });
 
@@ -753,6 +759,8 @@ public class MainPageFragment extends Fragment {
                             Intent naviIntent = new Intent(getContext(), NavigationActivity.class);
                             naviIntent.putExtra("activityID",DateSyncUtils.MAIN_PAGE_ID);
                             naviIntent.putExtra("venueName", venueName);
+                            naviIntent.putExtra("x",currentLongitude);
+                            naviIntent.putExtra("y",currentLatitude);
                             startActivity(naviIntent);
                         } else if (which == DialogAction.POSITIVE) {
                             dialog.dismiss();
