@@ -289,7 +289,7 @@ public class IndoorMapActivity extends AppCompatActivity {
                             @Override
                             public void onItemSelected(int position, DonationOption item) {
                                 chooseVenue(position);
-                                ToastUtils.showSingleToast(position+"");
+
                             }
                         })
                         .show();
@@ -644,6 +644,7 @@ public class IndoorMapActivity extends AppCompatActivity {
         }
         if (geodatabasePath != null){
             loadVenueLayer(geodatabasePath);
+            tv_floor.setText(floor_one); //选择场馆后重置楼层为一层
         }
     }
 
@@ -667,6 +668,8 @@ public class IndoorMapActivity extends AppCompatActivity {
                     mv_indoor.getMap().getOperationalLayers().add(featureLayer);
                 }
 
+                Point centralPoint = new Point(116.383816, 39.994898);
+                mv_indoor.setViewpointCenterAsync(centralPoint, 3140f);
 
             } else {
                 Toast.makeText(IndoorMapActivity.this, "Geodatabase failed to load!", Toast.LENGTH_LONG).show();
