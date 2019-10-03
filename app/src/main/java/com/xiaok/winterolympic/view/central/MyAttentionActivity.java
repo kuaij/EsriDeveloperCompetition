@@ -51,7 +51,7 @@ public class MyAttentionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_attention);
+        setContentView(R.layout.activity_my_attention);
         ButterKnife.bind(this);
 
         ActionBar actionBar = getSupportActionBar();

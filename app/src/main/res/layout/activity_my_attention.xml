@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_marginLeft="10sp"
-                android:text="@string/focus_cancle"
+                android:text="@string/focus_skip_this"
                 android:textColor="#000000"
                 android:textSize="18sp"
                 android:clickable="true"
