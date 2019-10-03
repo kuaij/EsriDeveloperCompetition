@@ -46,6 +46,7 @@ public class NavigationActivity extends AppCompatActivity implements AMapNaviVie
     public static final int RESULT_CODE_INPUTTIPS = 101;
     public static final int REQUEST_SUC = 1000;
 
+
     public NavigationActivity(){}
 
     @Override
@@ -86,30 +87,8 @@ public class NavigationActivity extends AppCompatActivity implements AMapNaviVie
             aMap = mapView_navi.getMap();
         }
 
-
-//        //终点输入框
-//        et_end_position.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                endPosition = s.toString();
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//                //如果起终点均已输入，则允许用户点击规划路线
-//                if (startPosition != null && endPosition != null){
-//                    btn_plan_way.setEnabled(true);
-//                }else {
-//                    btn_plan_way.setEnabled(false);
-//                }
-//            }
-//        });
-
+        //todo 定位
+//        startLocation(); //开始定位
 
         //规划路线按钮
         btn_plan_way.setOnClickListener(new View.OnClickListener() {
@@ -207,6 +186,8 @@ public class NavigationActivity extends AppCompatActivity implements AMapNaviVie
             }
         });
     }
+
+
 
     @Override
     public void onResume() {
@@ -325,6 +306,9 @@ public class NavigationActivity extends AppCompatActivity implements AMapNaviVie
 //        }
         Tip tip = (Tip) parent.getItemAtPosition(position);
         sv_end_position.setQuery(tip.getName(),false);
+        sv_end_position.clearFocus(); //清除搜索框的焦点
+        btn_plan_way.setEnabled(true); //选中终点后允许进行规划路线和导航
+        mInputListView.setVisibility(View.GONE); //选中后隐藏ListView
     }
 
 }

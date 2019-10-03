@@ -22,7 +22,10 @@ import com.esri.arcgisruntime.data.GeodatabaseFeatureTable;
 import com.esri.arcgisruntime.geometry.Point;
 import com.esri.arcgisruntime.layers.FeatureLayer;
 import com.esri.arcgisruntime.loadable.LoadStatus;
+import com.esri.arcgisruntime.location.LocationDataSource;
+import com.esri.arcgisruntime.location.NmeaDataSource;
 import com.esri.arcgisruntime.mapping.view.DefaultMapViewOnTouchListener;
+import com.esri.arcgisruntime.mapping.view.LocationDisplay;
 import com.esri.arcgisruntime.mapping.view.MapScaleChangedEvent;
 import com.esri.arcgisruntime.mapping.view.MapScaleChangedListener;
 import com.esri.arcgisruntime.mapping.view.MapView;
@@ -87,6 +90,7 @@ public class MainPageFragment extends Fragment {
     private FloatingActionButton fab_full_screen;
     private FloatingActionButton fab_location;
 
+    private LocationDisplay mLocationDisplay;
 
     private double currentScale = 5900000f;
 
@@ -178,7 +182,41 @@ public class MainPageFragment extends Fragment {
         fab_location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtils.showSingleToast("正在定位中...");
+                if (!mLocationDisplay.isStarted())
+                    mLocationDisplay.startAsync();
+                mLocationDisplay.setAutoPanMode(LocationDisplay.AutoPanMode.RECENTER);
+            }
+        });
+
+
+        //获取定位组件类
+        mLocationDisplay = mv_main_page.getLocationDisplay();
+
+        // 设置位置改变监听
+        mLocationDisplay.addDataSourceStatusChangedListener(new LocationDisplay.DataSourceStatusChangedListener() {
+            @Override
+            public void onStatusChanged(LocationDisplay.DataSourceStatusChangedEvent dataSourceStatusChangedEvent) {
+
+                // 如果LocationDisplay启动OK，则继续。
+                if (dataSourceStatusChangedEvent.isStarted()){
+                    return;
+                }
+                // 没有错误报告，然后继续。
+                if (dataSourceStatusChangedEvent.getError() == null){
+                    return;
+                }
+            }
+        });
+
+        mLocationDisplay.startAsync(); //开始显示位置
+        mLocationDisplay.addLocationChangedListener(new LocationDisplay.LocationChangedListener() {
+            @Override
+            public void onLocationChanged(LocationDisplay.LocationChangedEvent locationChangedEvent) {
+                LocationDataSource.Location location = mLocationDisplay.getLocation();
+                Point point = location.getPosition();
+                double x = point.getX();
+                double y = point.getY();
+                Logger.e("X:"+x+"\n"+"Y:"+y);
             }
         });
 

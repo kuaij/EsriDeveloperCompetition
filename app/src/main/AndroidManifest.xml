@@ -31,7 +31,7 @@
         <!-- 高德地图Key -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="1f7f9501ed766e49432641a7cbbf60c3" />
+            android:value="0664cdf8dae5a5ac45ec36e497e2c843" />
 
         <activity
             android:name=".view.WelcomeActivity"
@@ -77,11 +77,6 @@
         <activity android:name=".view.central.SceneComplaceActivity" />
         <activity android:name=".view.notify.WatchLiveActivity" />
         <activity android:name=".view.hide.SearchComplaceActivity" />
-
-        <service
-            android:name=".utils.notify.NotificationService"
-            android:exported="false" />
-
         <activity android:name=".view.central.EscapeRouteActivity" />
         <activity
             android:name=".view.video.RecordVideoActivity"
@@ -92,6 +87,15 @@
             android:theme="@style/RecordVideoTheme" />
         <activity android:name=".view.profile.BigAvatarActivity"
             android:theme="@style/RecordVideoTheme"></activity>
+
+        <service
+            android:name=".utils.notify.NotificationService"
+            android:exported="false" />
+
+        <service android:name="com.amap.api.location.APSService" />
+
+
+
     </application>
 
 </manifest>
