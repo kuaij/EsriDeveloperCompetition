@@ -367,7 +367,7 @@ public class VolunteerActivity extends AppCompatActivity {
     //志愿者繁忙时请求框
     private void confimrmChoice(int choice){
         new MaterialDialog.Builder(VolunteerActivity.this)
-                .title("项目信息")
+                .title("提示")
                 .canceledOnTouchOutside(false)
                 .content("该志愿者当前正在引导其他游客，可能无法及时为您提供帮助，建议您向其他志愿者寻求帮助。")
                 .positiveText("联系其他志愿者")
