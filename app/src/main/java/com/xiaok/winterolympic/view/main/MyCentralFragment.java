@@ -213,6 +213,11 @@ public class MyCentralFragment extends Fragment {
             progressDialog.dismiss();
             if (aBoolean) {
                 Toast.makeText(getContext(), "缓存已清除！", Toast.LENGTH_SHORT).show();
+                try {
+                    cacheSize = CacheUtils.getTotalCacheSize(getContext());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             } else {
                 Toast.makeText(getContext(), "缓存清理失败，请稍后重试", Toast.LENGTH_SHORT).show();
 
