@@ -4,6 +4,7 @@ import com.esri.arcgisruntime.geometry.GeometryEngine;
 import com.esri.arcgisruntime.geometry.Point;
 import com.esri.arcgisruntime.geometry.SpatialReference;
 import com.esri.arcgisruntime.mapping.view.MapView;
+import com.esri.arcgisruntime.mapping.view.SceneView;
 
 public class CoordinateUtils {
     /*
@@ -20,6 +21,16 @@ public class CoordinateUtils {
         android.graphics.Point point = new android.graphics.Point((int) x, (int) y);
         //转化为投影坐标
         Point sp = mapView.screenToLocation(point);
+        //转化为经纬度
+        Point resultPoint = (Point) GeometryEngine.project(sp, mSR4326);
+        return resultPoint;
+    }
+
+    public static Point screnToScenePoint(SceneView sceneView,float x,float y){
+        //获取当前屏幕点击坐标
+        android.graphics.Point point = new android.graphics.Point((int) x, (int) y);
+        //转化为投影坐标
+        Point sp = sceneView.screenToBaseSurface(point);
         //转化为经纬度
         Point resultPoint = (Point) GeometryEngine.project(sp, mSR4326);
         return resultPoint;

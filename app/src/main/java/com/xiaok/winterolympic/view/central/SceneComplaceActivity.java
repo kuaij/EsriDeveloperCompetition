@@ -5,20 +5,24 @@ import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
+import com.esri.arcgisruntime.geometry.Point;
 import com.esri.arcgisruntime.layers.ArcGISSceneLayer;
 import com.esri.arcgisruntime.loadable.LoadStatus;
 import com.esri.arcgisruntime.mapping.ArcGISScene;
 import com.esri.arcgisruntime.mapping.Basemap;
 import com.esri.arcgisruntime.mapping.MobileScenePackage;
 import com.esri.arcgisruntime.mapping.view.Camera;
+import com.esri.arcgisruntime.mapping.view.DefaultSceneViewOnTouchListener;
 import com.esri.arcgisruntime.mapping.view.SceneView;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.orhanobut.logger.Logger;
 import com.xiaok.winterolympic.R;
+import com.xiaok.winterolympic.utils.CoordinateUtils;
 import com.xiaok.winterolympic.utils.FileUtils;
 
 import java.util.ArrayList;
@@ -70,6 +74,8 @@ public class SceneComplaceActivity extends AppCompatActivity {
         mSceneView.setScene(scene);
         mSceneView.setAttributionTextVisible(false); //关闭Esri logo
 
+        mSceneView.setOnTouchListener(new MySceneTouchListener(mSceneView));
+
         String filepath = FileUtils.SCENE_PATH;
         if (!filepath.isEmpty()) {
 
@@ -104,7 +110,7 @@ public class SceneComplaceActivity extends AppCompatActivity {
         fab_zhangjiakou.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Camera camera = new Camera(40.915068,115.3940017,200, 345, 65, 0);
+                Camera camera = new Camera(40.67712306848805, 115.29955152776473,200, 345, 65, 0);
                 mSceneView.setViewpointCamera(camera);
             }
         });
@@ -140,6 +146,23 @@ public class SceneComplaceActivity extends AppCompatActivity {
                 return false;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private class MySceneTouchListener extends DefaultSceneViewOnTouchListener{
+
+        public MySceneTouchListener(SceneView sceneView) {
+            super(sceneView);
+        }
+
+        @Override
+        public boolean onSingleTapConfirmed(MotionEvent motionEvent) {
+
+            Point currentPoint = CoordinateUtils.screnToScenePoint(mSceneView, (int) motionEvent.getX(), (int) motionEvent.getY());
+            double currentX = currentPoint.getX(); //当前用户点击的的精度
+            double currentY = currentPoint.getY(); //当前用户点击的纬度
+            Logger.e("x:"+currentX+"\n"+"y:"+currentY);
+            return super.onSingleTapConfirmed(motionEvent);
         }
     }
 
