@@ -43,12 +43,12 @@ public class VideoBrowerActivity extends AppCompatActivity {
 
         videoDescripation_01 = getIntent().getStringExtra("videoDescripation");
 
-        videoAvatars = new int[]{R.drawable.head_picture,R.mipmap.video_avatar_02,R.mipmap.video_avatar_03};
-        usernames = new String[]{"xiaok","王小明","李晓华"};
-        videoDates = new String[]{"刚刚","昨天18:15","昨天17:42"};
-        videoDescripation = new String[]{videoDescripation_01,"#北京冬奥# 北京赢了！2022冬奥，不见不散！！！","#冬奥来了# 冬奥宣传视频，浓浓的中国风，超赞！"};
-        videoPaths = new String[]{FileUtils.VIDEO_01,FileUtils.VIDEO_02,FileUtils.VIDEO_03};
-        videoPosition = new String[]{"北京市延庆区","北京市朝阳区","河南省郑州市高新区"};
+        videoAvatars = new int[]{R.drawable.head_picture,R.mipmap.video_avatar_02,R.mipmap.video_avatar_03,R.mipmap.video_avatar_04};
+        usernames = new String[]{"xiaok","小张","王小明","李晓华"};
+        videoDates = new String[]{"刚刚","09月17日10:12","08月22日18:15","08月22日17:42"};
+        videoDescripation = new String[]{videoDescripation_01,"#雪容融和冰墩墩# 冬奥会和冬残奥会吉祥物来袭！","#北京冬奥# 北京赢了！2022冬奥，不见不散！！！","#冬奥来了# 冬奥宣传视频，浓浓的中国风，超赞！"};
+        videoPaths = new String[]{FileUtils.VIDEO_01,FileUtils.VIDEO_02,FileUtils.VIDEO_03,FileUtils.VIDEO_04};
+        videoPosition = new String[]{"北京市朝阳区","郑州市中原区","郑州市中原区","郑州市中原区"};
 
         aDate = new LinkedList<>();
         for (int i=0;i<videoAvatars.length;i++){

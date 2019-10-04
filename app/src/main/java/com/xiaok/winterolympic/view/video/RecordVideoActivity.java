@@ -36,6 +36,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.logging.Logger;
+
+import ch.ielse.view.SwitchView;
 
 public class RecordVideoActivity extends AppCompatActivity {
 
@@ -44,13 +47,14 @@ public class RecordVideoActivity extends AppCompatActivity {
     private Button btnEdit;
     private Button btnRestart;
     private EditText etDescripation;
-    private TextView tvPosition;
+    private SwitchView svPosition;
     private TextView tvTopic;
     private TextView tvSaveRecord;
     private VideoView videoView;
     private ImageView iv_play;
 
     private boolean startPlaying = false;
+    private boolean isPositionOK = false;
 
     private static final int RECORD_VIDEO = 1;
 
@@ -88,10 +92,17 @@ public class RecordVideoActivity extends AppCompatActivity {
         });
 
         //位置信息
-        tvPosition.setOnClickListener(new View.OnClickListener() {
+        svPosition.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if (!isPositionOK){
+                    ToastUtils.showSingleToast("显示位置信息");
+                    showPositionInfo();
+                    isPositionOK = true;
+                }else {
+                    ToastUtils.showSingleToast("不显示位置信息");
+                    isPositionOK = false;
+                }
             }
         });
 
@@ -186,7 +197,7 @@ public class RecordVideoActivity extends AppCompatActivity {
         btnEdit = findViewById(R.id.record_btn_edit);
         btnRestart = findViewById(R.id.record_btn_restart);
         etDescripation = findViewById(R.id.record_et_descripation);
-        tvPosition = findViewById(R.id.record_tv_position);
+        svPosition = findViewById(R.id.record_sv_position);
         tvSaveRecord = findViewById(R.id.record_tv_save);
         tvTopic = findViewById(R.id.record_tv_topic);
         videoView = findViewById(R.id.record_vv_cover);
@@ -209,6 +220,10 @@ public class RecordVideoActivity extends AppCompatActivity {
     private boolean uploadVideo(){
         SystemClock.sleep(2000);
         return true;
+    }
+
+    private void showPositionInfo(){
+        com.orhanobut.logger.Logger.e("显示位置信息");
     }
 
     @Override

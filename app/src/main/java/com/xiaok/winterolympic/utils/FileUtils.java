@@ -1,5 +1,7 @@
 package com.xiaok.winterolympic.utils;
 
+import android.os.Environment;
+
 public class FileUtils {
     /*
     * @function: 二维数据库和三维场景文件路径
@@ -47,5 +49,6 @@ public class FileUtils {
     public static final String VIDEO_01 = "/sdcard/Android/data/com.xiaok.winterolympic/files/scene/video_01.mp4";
     public static final String VIDEO_02 = "/sdcard/Android/data/com.xiaok.winterolympic/files/scene/video_02.mp4";
     public static final String VIDEO_03 = "/sdcard/Android/data/com.xiaok.winterolympic/files/scene/video_03.mp4";
+    public static final String VIDEO_04 = "/sdcard/Android/data/com.xiaok.winterolympic/files/scene/video_04.mp4";
 
 }

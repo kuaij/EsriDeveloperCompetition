@@ -87,6 +87,9 @@ dependencies {
     //进度条按钮，用于短视频界面上传短视频
     implementation 'com.github.imcloudfloating:ProgressBar:1.1'
 
+    //Switch，用于短视频发送界面位置信息
+    implementation 'ch.ielse:switchbutton:1.0.1'
+
     //弹出框，用于室内地图选择场馆
     implementation 'com.yarolegovich:lovely-dialog:1.1.0'
 
