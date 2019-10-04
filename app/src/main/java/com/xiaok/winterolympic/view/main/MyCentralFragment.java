@@ -19,7 +19,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.xiaok.winterolympic.R;
+import com.xiaok.winterolympic.utils.CacheUtils;
 import com.xiaok.winterolympic.view.LoginActivity;
 import com.xiaok.winterolympic.view.setting.AboutAppActivity;
 import com.xiaok.winterolympic.view.setting.MyProfileActivity;
@@ -38,6 +41,8 @@ public class MyCentralFragment extends Fragment {
 
     private ListView listview;
     private Button btn_log_out;
+
+    private String cacheSize;
 
     @Nullable
     @Override
@@ -59,6 +64,13 @@ public class MyCentralFragment extends Fragment {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeButtonEnabled(true);
             actionBar.setTitle("设置");
+        }
+
+        try {
+            cacheSize = CacheUtils.getTotalCacheSize(getContext());//获取当前缓存大小
+        } catch (Exception e) {
+            cacheSize = "20.23MB";
+            e.printStackTrace();
         }
 
         data  = new String[]{getString(R.string.setting_opinions_view),
@@ -83,7 +95,7 @@ public class MyCentralFragment extends Fragment {
                     break;
                 //清除缓存
                 case 2:
-                    new DeleteCacheAsyncTask().execute(); //清理缓存
+                    showCacheDialogs();
                     break;
                 //给app打分
                 case 3:
@@ -114,6 +126,28 @@ public class MyCentralFragment extends Fragment {
         });
 
 
+    }
+
+    private void showCacheDialogs(){
+        new MaterialDialog.Builder(getContext())
+                .title("清理缓存")
+                .canceledOnTouchOutside(false)
+                .content("确认清理"+cacheSize+"大小的缓存吗？")
+                .positiveText("确定")
+                .negativeText("取消")
+                .onAny(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        if (which == DialogAction.POSITIVE) {
+                            //确定清理
+                            new DeleteCacheAsyncTask().execute();
+                        }else if (which == DialogAction.NEGATIVE){
+                            dialog.dismiss();
+                        }
+
+                    }
+                })
+                .show();
     }
 
     //左上角返回
@@ -149,7 +183,7 @@ public class MyCentralFragment extends Fragment {
             progressDialog.setTitle("缓存清理");
             progressDialog.setMessage("正在准备执行清理...");
             progressDialog.setCancelable(false);
-            progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             progressDialog.setMax(100);
             progressDialog.show();
         }
@@ -161,9 +195,9 @@ public class MyCentralFragment extends Fragment {
             SystemClock.sleep(500);
 
             publishProgress("正在清除缓存文件...");
-            boolean isCleanOK = deleteFilesByDirectory(Objects.requireNonNull(getContext()).getCacheDir());
+            CacheUtils.clearAllCache(getContext());
 
-            return isCleanOK;
+            return true;
         }
 
         @Override
@@ -198,9 +232,9 @@ public class MyCentralFragment extends Fragment {
             String[] children = directory.list();
             for (int i = 0; i < children.length; i++) {
                 boolean success = deleteDir(new File(directory, children[i]));
-                if (!success) {
-                    return false;
-                }
+//                if (!success) {
+//                    continue;
+//                }
             }
         }
         return directory.delete();
