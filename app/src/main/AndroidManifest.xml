@@ -85,17 +85,17 @@
         <activity
             android:name=".view.video.VideoBrowerActivity"
             android:theme="@style/RecordVideoTheme" />
-        <activity android:name=".view.profile.BigAvatarActivity"
-            android:theme="@style/RecordVideoTheme"></activity>
+        <activity
+            android:name=".view.profile.BigAvatarActivity"
+            android:theme="@style/RecordVideoTheme" />
 
         <service
             android:name=".utils.notify.NotificationService"
             android:exported="false" />
-
         <service android:name="com.amap.api.location.APSService" />
 
-
-
+        <activity android:name=".view.navigation.RoutePlanActivity"
+            android:theme="@style/Theme.Design.Light.NoActionBar"/>
     </application>
 
 </manifest>

@@ -21,7 +21,8 @@
             android:singleLine="true"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white"
-            app:queryHint="@string/navigation_enter_start_position"/>
+            app:queryHint="@string/navigation_enter_start_position"
+            app:searchIcon="@mipmap/navi_start_position"/>
 
         <android.support.v7.widget.SearchView
             android:id="@+id/navi_sv_end"
@@ -63,11 +64,6 @@
             android:background="@drawable/button_clicked"
             android:text="@string/navigation_plan_way"/>
 
-        <com.amap.api.maps.MapView
-            android:id="@+id/navigation_mapview"
-            android:layout_marginTop="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
 
     </LinearLayout>
 

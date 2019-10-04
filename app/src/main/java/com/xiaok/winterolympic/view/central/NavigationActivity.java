@@ -49,15 +49,13 @@ import com.orhanobut.logger.Logger;
 import com.xiaok.winterolympic.R;
 import com.xiaok.winterolympic.adapt.NaviResultAdapter;
 import com.xiaok.winterolympic.model.SearchResult;
+import com.xiaok.winterolympic.view.navigation.RoutePlanActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class NavigationActivity extends AppCompatActivity implements RouteSearch.OnRouteSearchListener,
-        AdapterView.OnItemClickListener {
+public class NavigationActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
-    private MapView mapView_navi;
-    private AMap aMap;
     private SearchView sv_start_position;
     private SearchView sv_end_position;
     private Button btn_plan_way;
@@ -72,7 +70,6 @@ public class NavigationActivity extends AppCompatActivity implements RouteSearch
     private List<Tip> mCurrentTipList;
     private NaviResultAdapter mIntipAdapter;
 
-    private RouteSearch routeSearch;
 
     public static String DEFAULT_CITY = "北京";
     public static final int RESULT_CODE_INPUTTIPS = 101;
@@ -85,7 +82,6 @@ public class NavigationActivity extends AppCompatActivity implements RouteSearch
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
-        mapView_navi = findViewById(R.id.navigation_mapview);
         sv_start_position = findViewById(R.id.navi_sv_start);
         sv_end_position = findViewById(R.id.navi_sv_end);
         btn_plan_way = findViewById(R.id.navi_plan_way);
@@ -115,40 +111,19 @@ public class NavigationActivity extends AppCompatActivity implements RouteSearch
         mInputListView = findViewById(R.id.inputtip_list);
         mInputListView.setOnItemClickListener(this);
 
-        mapView_navi.onCreate(savedInstanceState);
-        //获取地图控制类
-        if (aMap == null){
-            aMap = mapView_navi.getMap();
-        }
-        MyLocationStyle myLocationStyle;
-        myLocationStyle = new MyLocationStyle();//初始化定位蓝点样式类myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE);//连续定位、且将视角移动到地图中心点，定位点依照设备方向旋转，并且会跟随设备移动。（1秒1次定位）如果不设置myLocationType，默认也会执行此种模式。
-        myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE_NO_CENTER);
-        myLocationStyle.interval(2000); //设置连续定位模式下的定位间隔，只在连续定位模式下生效，单次定位模式下不会生效。单位为毫秒。
-        aMap.setMyLocationStyle(myLocationStyle);//设置定位蓝点的Style
-//aMap.getUiSettings().setMyLocationButtonEnabled(true);设置默认定位按钮是否显示，非必需设置。
-        aMap.setMyLocationEnabled(true);// 设置为true表示启动显示定位蓝点，
-        //初始化以我的位置地图中心及缩放比
-        LatLng initLatLng = new LatLng(latitude,longitude);
-        aMap.moveCamera(CameraUpdateFactory.changeLatLng(initLatLng));
-        aMap.moveCamera(CameraUpdateFactory.zoomTo(12));
 
-        //初始化路径规划
-        routeSearch = new RouteSearch(this);
-        routeSearch.setRouteSearchListener(this);
-        //配置驾车路线参数
-        com.amap.api.services.core.LatLonPoint startLatLng = new LatLonPoint(startPoint.getY(),startPoint.getX());
-        com.amap.api.services.core.LatLonPoint endLatLng = new LatLonPoint(endPoint.getY(),endPoint.getX());
-        RouteSearch.FromAndTo fromAndTo = new RouteSearch.FromAndTo(startLatLng,endLatLng);
-        RouteSearch.DriveRouteQuery query = new RouteSearch.DriveRouteQuery(fromAndTo,0,null,null,"");
 
 
         //规划路线按钮
         btn_plan_way.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (query != null){
-                    routeSearch.calculateDriveRouteAsyn(query);
-                }
+                Intent routeIntent = new Intent(NavigationActivity.this,RoutePlanActivity.class);
+                routeIntent.putExtra("startX",startPoint.getX());
+                routeIntent.putExtra("startY",startPoint.getY());
+                routeIntent.putExtra("endX",endPoint.getX());
+                routeIntent.putExtra("endY",endPoint.getY());
+                startActivity(routeIntent);
 
             }
         });
@@ -243,44 +218,6 @@ public class NavigationActivity extends AppCompatActivity implements RouteSearch
     }
 
 
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (mapView_navi != null){
-            mapView_navi.onResume();
-        }
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        if (mapView_navi != null){
-            mapView_navi.onPause();
-        }
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (mapView_navi != null){
-            mapView_navi.onDestroy();
-        }
-    }
-
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        if (mapView_navi != null){
-            mapView_navi.onSaveInstanceState(outState);
-        }
-    }
-
     //左上角返回
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -313,163 +250,5 @@ public class NavigationActivity extends AppCompatActivity implements RouteSearch
 
 
 
-    @Override
-    public void onBusRouteSearched(BusRouteResult busRouteResult, int i) {
 
-        Logger.e("CF", "onBusRouteSearched: " + i);
-
-        aMap.clear();
-        //几种公交路线
-        List<BusPath> busPathList = busRouteResult.getPaths();
-        //选择第一条
-        List<BusStep> busSteps = busPathList.get(0).getSteps();
-
-        for (BusStep bs : busSteps) {
-            //获取该条路线某段公交路程步行的点
-            RouteBusWalkItem routeBusWalkItem = bs.getWalk();
-            if(routeBusWalkItem != null){
-                List<WalkStep> wsList = routeBusWalkItem.getSteps();
-                ArrayList<LatLng> walkPoint = new ArrayList<>();
-
-                for (WalkStep ws :wsList){
-                    List<LatLonPoint> points = ws.getPolyline();
-                    for (LatLonPoint lp : points){
-                        walkPoint.add(new LatLng(lp.getLatitude(),lp.getLongitude()));
-                    }
-                }
-                //添加步行点
-                aMap.addPolyline(new PolylineOptions()
-                        .addAll(walkPoint)
-                        .width(40)
-                        //是否开启纹理贴图
-                        .setUseTexture(true)
-                        //绘制成大地线
-                        .geodesic(false)
-                        //设置画线的颜色
-                        .color(Color.argb(200, 0, 0, 0)));
-            }
-
-            //获取该条路线某段公交路路程的点
-
-            List<RouteBusLineItem> rbli = bs.getBusLines();
-            ArrayList<LatLng> busPoint = new ArrayList<>();
-
-
-            for (RouteBusLineItem one: rbli){
-
-                List<LatLonPoint> points = one.getPolyline();
-
-                for (LatLonPoint lp : points){
-                    busPoint.add(new LatLng(lp.getLatitude(),lp.getLongitude()));
-                }
-            }
-            //添加公交路线点
-            aMap.addPolyline(new PolylineOptions()
-                    .addAll(busPoint)
-                    .width(40)
-                    //是否开启纹理贴图
-                    .setUseTexture(true)
-                    //绘制成大地线
-                    .geodesic(false)
-                    //设置画线的颜色
-                    .color(Color.argb(200, 0, 0, 0)));
-        }
-    }
-
-    @Override
-    public void onDriveRouteSearched(DriveRouteResult driveRouteResult, int i) {
-
-        Logger.e("CF", "onDriveRouteSearched: " + i);
-
-        List<DrivePath> pathList = driveRouteResult.getPaths();
-        List<LatLng> driverPath = new ArrayList<>();
-
-        for (DrivePath dp : pathList) {
-
-            List<DriveStep> stepList = dp.getSteps();
-            for (DriveStep ds : stepList) {
-
-                List<LatLonPoint> points = ds.getPolyline();
-                for (LatLonPoint llp : points) {
-                    driverPath.add(new LatLng(llp.getLatitude(), llp.getLongitude()));
-                }
-            }
-        }
-
-        aMap.clear();
-        aMap.addPolyline(new PolylineOptions()
-                .addAll(driverPath)
-                .width(40)
-                //是否开启纹理贴图
-                .setUseTexture(true)
-                //绘制成大地线
-                .geodesic(false)
-                //设置纹理样式
-                .setCustomTexture(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.navi_blue_line)))
-                //设置画线的颜色
-                .color(Color.argb(200, 0, 0, 0)));
-
-    }
-
-    @Override
-    public void onWalkRouteSearched(WalkRouteResult walkRouteResult, int i) {
-
-        List<WalkPath> pathList = walkRouteResult.getPaths();
-        List<LatLng> walkPaths = new ArrayList<>();
-
-        for (WalkPath dp : pathList) {
-
-            List<WalkStep> stepList = dp.getSteps();
-            for (WalkStep ds : stepList) {
-
-
-                List<LatLonPoint> points = ds.getPolyline();
-                for (LatLonPoint llp : points) {
-                    walkPaths.add(new LatLng(llp.getLatitude(), llp.getLongitude()));
-                }
-            }
-        }
-
-        aMap.clear();
-        aMap.addPolyline(new PolylineOptions()
-                .addAll(walkPaths)
-                .width(40)
-                //是否开启纹理贴图
-                .setUseTexture(true)
-                //绘制成大地线
-                .geodesic(false)
-                //设置画线的颜色
-                .color(Color.argb(200, 0, 0, 0)));
-
-    }
-
-    @Override
-    public void onRideRouteSearched(RideRouteResult rideRouteResult, int i) {
-
-        List<RidePath> pathList = rideRouteResult.getPaths();
-        List<LatLng> walkPaths = new ArrayList<>();
-
-        for (RidePath dp : pathList) {
-
-            List<RideStep> stepList = dp.getSteps();
-            for (RideStep ds : stepList) {
-                List<LatLonPoint> points = ds.getPolyline();
-                for (LatLonPoint llp : points) {
-                    walkPaths.add(new LatLng(llp.getLatitude(), llp.getLongitude()));
-                }
-            }
-        }
-
-        aMap.clear();
-        aMap.addPolyline(new PolylineOptions()
-                .addAll(walkPaths)
-                .width(40)
-                //是否开启纹理贴图
-                .setUseTexture(true)
-                //绘制成大地线
-                .geodesic(false)
-                //设置画线的颜色
-                .color(Color.argb(200, 0, 0, 0)));
-
-    }
 }
