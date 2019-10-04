@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".view.MainPageActivity">
 
@@ -11,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <Button
+    <net.qiujuer.genius.ui.widget.Button
         android:id="@+id/btn_log_out"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,5 +23,5 @@
         android:background="#ff0000"
         android:text="@string/log_out"
         android:textSize="30sp"
-        />
+        app:gTouchEffect="ripple" />
 </LinearLayout>
