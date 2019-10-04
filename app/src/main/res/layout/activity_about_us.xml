@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:src="@mipmap/ic_logo"
+        android:layout_marginTop="5dp"
         android:background="#ffffff"/>
 
     <TextView
@@ -18,6 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:gravity="center_horizontal"
+        android:layout_marginTop="5dp"
         android:text="@string/app_name"
         android:textColor="#000000"
         android:textSize="25sp" />
@@ -28,7 +30,7 @@
         android:layout_gravity="center_horizontal"
         android:gravity="center_horizontal"
         android:textSize="18sp"
-        android:text="V 1.3.2"/>
+        android:text="V 1.3.6"/>
 
     <ListView
         android:id="@+id/lv_setting2"
