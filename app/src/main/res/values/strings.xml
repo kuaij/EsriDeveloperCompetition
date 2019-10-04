@@ -3,7 +3,7 @@
 
     <!--欢迎页面-->
     <string name="slogan">激情冬奥，你我共迎！</string>
-    <string name="copyright_information">2019 © Esri软件开发竞赛</string>
+    <string name="copyright_information">2019 © Esri杯中国大学生GIS软件开发竞赛</string>
 
     <!--登录页面-->
     <string name="hint_usename">邮箱:</string>
