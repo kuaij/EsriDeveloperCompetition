@@ -21,6 +21,7 @@ import com.esri.arcgisruntime.geometry.Point;
 import com.esri.arcgisruntime.layers.FeatureLayer;
 import com.esri.arcgisruntime.loadable.LoadStatus;
 import com.esri.arcgisruntime.mapping.view.DefaultMapViewOnTouchListener;
+import com.esri.arcgisruntime.mapping.view.LocationDisplay;
 import com.esri.arcgisruntime.mapping.view.MapScaleChangedEvent;
 import com.esri.arcgisruntime.mapping.view.MapScaleChangedListener;
 import com.esri.arcgisruntime.mapping.view.MapView;
@@ -45,6 +46,8 @@ public class VolunteerActivity extends AppCompatActivity {
     private Handler mUiHandler = new Handler();
 
     private static final double INIT_SCALE = 4000000f;
+
+    private LocationDisplay mLocationDisplay;
 
     private List<FloatingActionMenu> menus = new ArrayList<>();
     private FloatingActionMenu menu_blue;
@@ -130,7 +133,28 @@ public class VolunteerActivity extends AppCompatActivity {
         fab_location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtils.showSingleToast("正在定位中...");
+                if (!mLocationDisplay.isStarted())
+                    mLocationDisplay.startAsync();
+                mLocationDisplay.setAutoPanMode(LocationDisplay.AutoPanMode.RECENTER);
+            }
+        });
+
+        //获取定位组件类
+        mLocationDisplay = mMapView.getLocationDisplay();
+
+        // 设置位置改变监听
+        mLocationDisplay.addDataSourceStatusChangedListener(new LocationDisplay.DataSourceStatusChangedListener() {
+            @Override
+            public void onStatusChanged(LocationDisplay.DataSourceStatusChangedEvent dataSourceStatusChangedEvent) {
+
+                // 如果LocationDisplay启动OK，则继续。
+                if (dataSourceStatusChangedEvent.isStarted()){
+                    return;
+                }
+                // 没有错误报告，然后继续。
+                if (dataSourceStatusChangedEvent.getError() == null){
+                    return;
+                }
             }
         });
 

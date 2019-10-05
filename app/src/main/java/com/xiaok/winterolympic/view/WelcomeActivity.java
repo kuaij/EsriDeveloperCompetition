@@ -31,7 +31,7 @@ public class WelcomeActivity extends AppCompatActivity {
             actionBar.hide();
         }  //这里将自带的标题栏隐藏掉
 
-        handler.sendEmptyMessageDelayed(0,2000);  //定个时 3秒
+        handler.sendEmptyMessageDelayed(0,2000);  //定个时 2秒
 
     }
     private Handler handler = new Handler() {

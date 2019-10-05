@@ -7,14 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Toast;
 
 import com.esri.arcgisruntime.geometry.Point;
 import com.esri.arcgisruntime.layers.ArcGISSceneLayer;
-import com.esri.arcgisruntime.loadable.LoadStatus;
 import com.esri.arcgisruntime.mapping.ArcGISScene;
 import com.esri.arcgisruntime.mapping.Basemap;
-import com.esri.arcgisruntime.mapping.MobileScenePackage;
 import com.esri.arcgisruntime.mapping.view.Camera;
 import com.esri.arcgisruntime.mapping.view.DefaultSceneViewOnTouchListener;
 import com.esri.arcgisruntime.mapping.view.SceneView;
