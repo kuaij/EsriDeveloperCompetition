@@ -99,6 +99,9 @@ public class IndoorMapActivity extends AppCompatActivity {
 
     private String geodatabasePath = FileUtils.INDOOR_WATER_CLUB_01;
 
+    private Point nationalGymPoint;
+    private Point waterClubPoint;
+
     private Handler mUiHandler = new Handler();
 
     private int maxNum = 4; //楼层数
@@ -128,13 +131,16 @@ public class IndoorMapActivity extends AppCompatActivity {
         //加载自定义ActionBar
         setCustomActionBar();
 
+        //初始化国家体育馆和水立方中心坐标
+        nationalGymPoint = new Point(116.383816, 39.994898);
+        waterClubPoint = new Point(116.384216, 39.991298);
+
         //配置地图，加载图层
         LayerUtils.addTDT(mv_indoor); //加载天地图底图
 //        loadPointGeodatebase();
         loadIndoorGeodatebase();//加载室内地图
         loadIndoorNaviRoute(); //加载室内导航路线，初始设置为不可见
-        Point centralPoint = new Point(116.384216, 39.991298);
-        mv_indoor.setViewpointCenterAsync(centralPoint, 3140f);
+        mv_indoor.setViewpointCenterAsync(waterClubPoint, 3140f);
         mv_indoor.setAttributionTextVisible(false); //去除Esrilogo
 
 
@@ -595,10 +601,12 @@ public class IndoorMapActivity extends AppCompatActivity {
             //水立方
             case 0:
                 geodatabasePath = FileUtils.INDOOR_WATER_CLUB_01;
+                loadVenueLayerWithPoint(geodatabasePath,waterClubPoint);
                 break;
             //国家体育馆
             case 1:
                 geodatabasePath = FileUtils.INDOOR_NATIONAL_STATION_01;
+                loadVenueLayerWithPoint(geodatabasePath,nationalGymPoint);
                 break;
             //五棵松体育馆
             case 2:
@@ -643,8 +651,8 @@ public class IndoorMapActivity extends AppCompatActivity {
             default:break;
         }
         if (geodatabasePath != null){
-            loadVenueLayer(geodatabasePath);
-            tv_floor.setText(floor_one); //选择场馆后重置楼层为一层
+            currentFloor = floor_one;
+            tv_floor.setText(currentFloor); //选择场馆后重置楼层为一层
         }
     }
 
@@ -668,7 +676,32 @@ public class IndoorMapActivity extends AppCompatActivity {
                     mv_indoor.getMap().getOperationalLayers().add(featureLayer);
                 }
 
-                Point centralPoint = new Point(116.383816, 39.994898);
+            } else {
+                Toast.makeText(IndoorMapActivity.this, "Geodatabase failed to load!", Toast.LENGTH_LONG).show();
+                Logger.e("Geodatabase failed to load!");
+            }
+        });
+    }
+
+    private void loadVenueLayerWithPoint(String geodatabasePath,Point centralPoint){
+        //清除地图控件上之前的 图层
+        mv_indoor.getMap().getOperationalLayers().clear();
+
+        final Geodatabase geodatabase = new Geodatabase(geodatabasePath);
+        geodatabase.loadAsync();
+        // 当geodatabase读取成功后将geodatabase加载到数据库
+        geodatabase.addDoneLoadingListener(() -> {
+            if (geodatabase.getLoadStatus() == LoadStatus.LOADED) {
+
+                List<GeodatabaseFeatureTable> geodatabaseFeatureTables = geodatabase.getGeodatabaseFeatureTables();
+                for (int i=geodatabaseFeatureTables.size()-1;i>=0;i--){
+                    GeodatabaseFeatureTable geodatabaseFeatureTable = geodatabaseFeatureTables.get(i);
+                    geodatabaseFeatureTable.loadAsync();
+                    //创建要素图层
+                    final FeatureLayer featureLayer = new FeatureLayer(geodatabaseFeatureTable);
+                    // 添加到地图
+                    mv_indoor.getMap().getOperationalLayers().add(featureLayer);
+                }
                 mv_indoor.setViewpointCenterAsync(centralPoint, 3140f);
 
             } else {

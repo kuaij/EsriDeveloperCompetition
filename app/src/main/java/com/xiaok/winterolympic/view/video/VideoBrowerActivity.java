@@ -1,5 +1,6 @@
 package com.xiaok.winterolympic.view.video;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import com.xiaok.winterolympic.R;
 import com.xiaok.winterolympic.adapt.VideoBrowerAdapter;
 import com.xiaok.winterolympic.model.VideoBrower;
 import com.xiaok.winterolympic.utils.FileUtils;
+import com.xiaok.winterolympic.view.MainPageActivity;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -69,7 +71,7 @@ public class VideoBrowerActivity extends AppCompatActivity {
         ib_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                startActivity(new Intent(VideoBrowerActivity.this,MainPageActivity.class));
             }
         });
     }

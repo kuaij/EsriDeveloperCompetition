@@ -192,10 +192,11 @@ public class MyCentralFragment extends Fragment {
         protected Boolean doInBackground(Void... voids) {
 
             publishProgress("正在执行清理操作...");
-            SystemClock.sleep(500);
+            SystemClock.sleep(800);
 
             publishProgress("正在清除缓存文件...");
             CacheUtils.clearAllCache(getContext());
+            SystemClock.sleep(800);
 
             return true;
         }

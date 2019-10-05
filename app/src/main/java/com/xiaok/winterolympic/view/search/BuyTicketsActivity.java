@@ -4,6 +4,7 @@ import android.net.http.SslError;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -45,5 +46,18 @@ public class BuyTicketsActivity extends AppCompatActivity {
         wv_offical.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         wv_offical.getSettings().setLoadWithOverviewMode(true);
         wv_offical.loadUrl("https://p.damai.cn/wow/pc/act/sports?spm=a2oeg.home.category.ditem_2.591b23e11FBNVy");
+    }
+
+
+    //左上角返回
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:   //返回键的id
+                finish();
+                return false;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

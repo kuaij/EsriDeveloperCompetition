@@ -48,7 +48,8 @@
             android:theme="@style/Theme.Design.Light.NoActionBar" />
         <activity
             android:name=".view.MainPageActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleTask"/>
         <activity
             android:name=".view.login.RegisterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
