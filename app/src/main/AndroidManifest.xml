@@ -48,8 +48,8 @@
             android:theme="@style/Theme.Design.Light.NoActionBar" />
         <activity
             android:name=".view.MainPageActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:launchMode="singleTask"/>
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".view.login.RegisterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -95,8 +95,10 @@
             android:exported="false" />
         <service android:name="com.amap.api.location.APSService" />
 
-        <activity android:name=".view.navigation.RoutePlanActivity"
-            android:theme="@style/Theme.Design.Light.NoActionBar"/>
+        <activity
+            android:name=".view.navigation.RoutePlanActivity"
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
+        <activity android:name=".view.central.ARComplaceActivity"></activity>
     </application>
 
 </manifest>

@@ -45,6 +45,7 @@ import com.xiaok.winterolympic.base.NameObserver;
 import com.xiaok.winterolympic.model.UIAyncManager;
 import com.xiaok.winterolympic.utils.notify.Notificaitons;
 import com.xiaok.winterolympic.utils.notify.NotificationsPermission;
+import com.xiaok.winterolympic.view.central.ARComplaceActivity;
 import com.xiaok.winterolympic.view.central.EscapeRouteActivity;
 import com.xiaok.winterolympic.view.central.GamesScheduleActivity;
 import com.xiaok.winterolympic.view.central.IndoorMapActivity;
@@ -299,6 +300,10 @@ public class MainPageActivity extends AppCompatActivity implements NavigationVie
             //逃生路线
             case R.id.central_escape_route:
                 startActivity(new Intent(MainPageActivity.this, EscapeRouteActivity.class));
+                break;
+            //AR场馆
+            case R.id.central_ar_complace:
+                startActivity(new Intent(MainPageActivity.this,ARComplaceActivity.class));
                 break;
             default:break;
         }
