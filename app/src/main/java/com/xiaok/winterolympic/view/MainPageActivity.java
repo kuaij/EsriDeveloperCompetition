@@ -88,7 +88,7 @@ public class MainPageActivity extends AppCompatActivity implements NavigationVie
     private static final int NOTIFY_CODE_ATHLETIC = 1;
     private static final int NOTIFY_CODE_ITEM = 2;
 
-    public Point point;
+    public static Point point;
     private MainPageFragment mainPageFragment;
     private SearchCompetitionFragment navigationFragment;
 //    private DynamicFragment dynamicFragment;

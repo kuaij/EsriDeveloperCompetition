@@ -1,5 +1,6 @@
 package com.xiaok.winterolympic.utils;
 
+import com.amap.api.maps.model.Poi;
 import com.esri.arcgisruntime.geometry.GeometryEngine;
 import com.esri.arcgisruntime.geometry.Point;
 import com.esri.arcgisruntime.geometry.SpatialReference;
@@ -35,4 +36,15 @@ public class CoordinateUtils {
         Point resultPoint = (Point) GeometryEngine.project(sp, mSR4326);
         return resultPoint;
     }
+
+    public static double[] lngLat2Mercator(double lng, double lat) {
+        double[] xy = new double[2];
+        double x = lng * 20037508.342789 / 180;
+        double y = Math.log(Math.tan((90 + lat) * Math.PI / 360)) / (Math.PI / 180);
+        y = y * 20037508.34789 / 180;
+        xy[0] = x;
+        xy[1] = y;
+        return xy;
+    }
+
 }
