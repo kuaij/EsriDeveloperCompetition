@@ -30,8 +30,12 @@ public class ARComplaceActivity extends AppCompatActivity implements SensorEvent
     private float zDegree;
     private float xDegree;
     private float yDegree;
+    private double currentDistance;
 
     private TextView tv_info;
+    private TextView tv_hold_item;
+    private TextView tv_distance;
+    private TextView tv_seats_num;
 
     Handler handler = new Handler(){
         @Override
@@ -40,11 +44,11 @@ public class ARComplaceActivity extends AppCompatActivity implements SensorEvent
             switch (msg.what){
                 //可见
                 case 0:
-                    tv_info.setVisibility(View.VISIBLE);
+                    syncComplaceInfo(true);
                     break;
                 //不可见
                 case 1:
-                    tv_info.setVisibility(View.INVISIBLE);
+                    syncComplaceInfo(false);
                     break;
             }
 
@@ -58,6 +62,10 @@ public class ARComplaceActivity extends AppCompatActivity implements SensorEvent
         setContentView(R.layout.activity_arcomplace);
 
         tv_info = findViewById(R.id.tv_info);
+        tv_hold_item = findViewById(R.id.tv_hold_item);
+        tv_distance = findViewById(R.id.tv_distance);
+        tv_seats_num = findViewById(R.id.tv_seats_num);
+
 
         //初始化Poin为国家会议中心
         userWgsPoint = new Point(116.38376139624,39.997936144); //初始化为国家会议中心的坐标
@@ -103,21 +111,22 @@ public class ARComplaceActivity extends AppCompatActivity implements SensorEvent
             @Override
             public void run() {
                 userMercatorPoint = getMercatorPoint(MainPageActivity.point);
-                double userDistance = calculationDistance();
-                if (userDistance<=200){
-                    if (yDegree >= -30 && yDegree <= 30 && xDegree >=-120 && xDegree <=-60){
-                        Message message = Message.obtain();
-                        message.what = 0;
-                        handler.sendMessage(message);
-                    }
-                    else {
-                        Message message = Message.obtain();
-                        message.what = 1;
-                        handler.sendMessage(message);
-                    }
+                currentDistance = calculationDistance();
+//                if (userDistance<=200){
+//
+//                }
+                if (yDegree >= -30 && yDegree <= 30 && xDegree >=-120 && xDegree <=-60){
+                    Message message = Message.obtain();
+                    message.what = 0;
+                    handler.sendMessage(message);
+                }
+                else {
+                    Message message = Message.obtain();
+                    message.what = 1;
+                    handler.sendMessage(message);
                 }
             }
-        },0,3000);
+        },0,1000);
     }
 
     //将用户坐标转化为墨卡托，便于之后计算相对位置和距离
@@ -134,6 +143,22 @@ public class ARComplaceActivity extends AppCompatActivity implements SensorEvent
         double yDistance = userMercatorPoint.getY() - testMercatorPoint.getY();
         //两点间距离公式算距离
         return Math.sqrt(Math.pow(xDistance,2)+Math.pow(yDistance,2));
+    }
+
+    //同步场馆信息
+    private void syncComplaceInfo(Boolean isShow){
+        if (isShow){
+            tv_info.setVisibility(View.VISIBLE);
+            tv_hold_item.setVisibility(View.VISIBLE);
+            tv_distance.setVisibility(View.VISIBLE);
+            tv_seats_num.setVisibility(View.VISIBLE);
+        }else {
+            tv_info.setVisibility(View.INVISIBLE);
+            tv_hold_item.setVisibility(View.INVISIBLE);
+            tv_distance.setVisibility(View.INVISIBLE);
+            tv_seats_num.setVisibility(View.INVISIBLE);
+        }
+        tv_distance.setText(getString(R.string.ar_distance_text)+currentDistance+"m");
     }
 
 }

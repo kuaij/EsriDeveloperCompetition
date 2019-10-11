@@ -45,7 +45,7 @@ public class BuyTicketsActivity extends AppCompatActivity {
         //自适应屏幕
         wv_offical.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         wv_offical.getSettings().setLoadWithOverviewMode(true);
-        wv_offical.loadUrl("https://p.damai.cn/wow/pc/act/sports?spm=a2oeg.home.category.ditem_2.591b23e11FBNVy");
+        wv_offical.loadUrl("https://p.damai.cn/wow/act/act/dmsport?pos=4&acm=2018091714.1003.2.4476523&scm=1003.2.2018091714.OTHER_1568963053082_4476523&utm=QJd9Xw&clicktitle=%E4%BD%93%E8%82%B2&spm=a2o71.home.icon.ditem_3");
     }
 
 

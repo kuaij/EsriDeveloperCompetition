@@ -8,6 +8,7 @@
 	<string name="sign_in">登錄</string>
 	<string name="sign_up">註冊</string>
 	<string name="forget_password">忘記密碼？</string>
+	<string name="register_email_name">註冊密碼</string>
 	<string name="register_page_name">註冊</string>
 	<string name="register_username">暱稱</string>
 	<string name="register_email">郵箱</string>
@@ -115,11 +116,17 @@
 	<string name="notify_get_permission">冬奧小助 需要申請通知欄權限，以便向您推送你關注的運動員和項目相關信息，請前往設置頁面中授予權限。</string>
 	<string name="notify_contirm">前往設置</string>
 	<string name="notify_cancle">取消</string>
+	<string name="notify_title_volunteer">您有新的位置調配信息！</string>
+	<string name="notify_content_volunteer">根據實時遊客調配信息，系統已對您的位置進行重新調配，新的位置為 志新路與志新東路交口。</string>
+	<string name="notify_action_yes_volunteer">直接前往</string>
 	<string name="main_page_area">賽區</string>
 	<string name="main_page_navigation">導航</string>
 	<string name="main_page_setting">設置</string>
+	<string name="main_page_dynatic">動態</string>
 	<string name="main_page_search">搜索</string>
+	<string name="main_record_video">發布視頻</string>
 	<string name="main_page_help">幫助</string>
+	<string name="hide_buy_tickets">門票購買</string>
 	<string name="search_page_name">搜索比賽信息</string>
 	<string name="search_day">比賽日期：</string>
 	<string name="search_competition">比賽項目：</string>
@@ -181,7 +188,9 @@
 	<string name="central_volunteer">尋找志願者</string>
 	<string name="central_navigation">路線規劃</string>
 	<string name="central_3d_scene">三維場館</string>
+	<string name="central_ar_complace">增強現實</string>
 	<string name="central_my_attention">我的關注</string>
+	<string name="central_escape_route">逃生路線</string>
 	<string name="central_user_simple">普通用戶</string>
 	<string name="central_user_athlete">運動員</string>
 	<string name="central_user_volunteer">志願者</string>
@@ -225,10 +234,21 @@
 	<string name="profile_user_identify">用戶認證</string>
 	<string name="profile_save_name">保存</string>
 	<string name="opinion_post">提交</string>
+	<string name="identify_name">用戶認證</string>
+	<string name="identify_volunteer_name">志願者認證</string>
+	<string name="identify_athletic_name">運動員認證</string>
+	<string name="identify_volunteer_code_hint">請輸入您的認證編號</string>
+	<string name="identify_confirm">認證</string>
+	<string name="identify_cancle">取消</string>
+	<string name="identify_type_volunteer">志願者</string>
+	<string name="identify_type_athletic">運動員</string>
+	<string name="escape_page_name">逃生路線</string>
 	<string name="opinion_post_message">提交反饋</string>
 	<string name="opinion_exam_net">檢查網絡...</string>
 	<string name="opinion_post_ing">正在提交...</string>
 	<string name="opinion_not_close">，請勿關閉此界面...</string>
 	<string name="opinion_post_success">提交成功，感謝您的意見！</string>
 	<string name="opinion_post_failed">提交失敗，請檢查網絡或稍後重試。</string>
+	<string name="video_share_name">視頻動態</string>
+	<string name="ar_distance_text">距離：</string>
 </resources>

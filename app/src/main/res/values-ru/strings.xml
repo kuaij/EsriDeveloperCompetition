@@ -8,6 +8,7 @@
 	<string name="sign_in">войти</string>
 	<string name="sign_up">регистрация</string>
 	<string name="forget_password">Забыли пароль?</string>
+	<string name="register_email_name">Регистрация Пароль</string>
 	<string name="register_page_name">регистрация</string>
 	<string name="register_username">кличка</string>
 	<string name="register_email">почтовый ящик</string>
@@ -115,11 +116,17 @@
 	<string name="notify_get_permission">Помощь в проведении зимних Олимпийских игр Вам необходимо подать заявление на получение разрешения на панель уведомлений, чтобы подтолкнуть вас к интересующим вас спортсменам и информации о проекте. Чтобы получить разрешение, перейдите на страницу настроек.</string>
 	<string name="notify_contirm">Перейти в настройки</string>
 	<string name="notify_cancle">отменен</string>
+	<string name="notify_title_volunteer">У вас есть новое развертывание информации о местонахождении!</string>
+	<string name="notify_content_volunteer">В соответствии с размещением информации для посетителей в режиме реального времени, ваша система была перераспределены расположение, новое место для нового Chi Chi-роуд и Новая транспортная развязка.</string>
+	<string name="notify_action_yes_volunteer">прямой доступ</string>
 	<string name="main_page_area">разделение</string>
 	<string name="main_page_navigation">навигация</string>
 	<string name="main_page_setting">устанавливать</string>
+	<string name="main_page_dynatic">динамический</string>
 	<string name="main_page_search">поиск</string>
+	<string name="main_record_video">видео-релиз</string>
 	<string name="main_page_help">помощь</string>
+	<string name="hide_buy_tickets">Купить билеты</string>
 	<string name="search_page_name">Поиск информации о конкурсе</string>
 	<string name="search_day">Дата матча:</string>
 	<string name="search_competition">Конкурсные предметы:</string>
@@ -181,7 +188,9 @@
 	<string name="central_volunteer">Ищем волонтеров</string>
 	<string name="central_navigation">Планирование маршрута</string>
 	<string name="central_3d_scene">3D место</string>
+	<string name="central_ar_complace">Дополненная реальность</string>
 	<string name="central_my_attention">Моя забота</string>
+	<string name="central_escape_route">побег маршрут</string>
 	<string name="central_user_simple">Обычный пользователь</string>
 	<string name="central_user_athlete">спортсмен</string>
 	<string name="central_user_volunteer">доброволец</string>
@@ -225,10 +234,21 @@
 	<string name="profile_user_identify">Аутентификация пользователя</string>
 	<string name="profile_save_name">Сохранить</string>
 	<string name="opinion_post">представить</string>
+	<string name="identify_name">Аутентификация пользователя</string>
+	<string name="identify_volunteer_name">Доброволец сертификация</string>
+	<string name="identify_athletic_name">Спортсмены сертификации</string>
+	<string name="identify_volunteer_code_hint">Пожалуйста, введите ваш номер сертификации</string>
+	<string name="identify_confirm">проверять подлинность</string>
+	<string name="identify_cancle">отменен</string>
+	<string name="identify_type_volunteer">доброволец</string>
+	<string name="identify_type_athletic">спортсмен</string>
+	<string name="escape_page_name">побег маршрут</string>
 	<string name="opinion_post_message">Отправить отзыв</string>
 	<string name="opinion_exam_net">Проверьте сеть ...</string>
 	<string name="opinion_post_ing">Он представлен ...</string>
 	<string name="opinion_not_close">Пожалуйста, не закрывайте этот интерфейс ...</string>
 	<string name="opinion_post_success">Успешно отправлено, спасибо за ваши комментарии!</string>
 	<string name="opinion_post_failed">Не удалось отправить, проверьте сеть или повторите попытку позже.</string>
+	<string name="video_share_name">Dynamic Video</string>
+	<string name="ar_distance_text">Расстояние:</string>
 </resources>

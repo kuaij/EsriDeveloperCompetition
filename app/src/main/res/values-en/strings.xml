@@ -122,6 +122,7 @@
 	<string name="main_page_area">Division</string>
 	<string name="main_page_navigation">Navigation</string>
 	<string name="main_page_setting">Setting</string>
+	<string name="main_page_dynatic">dynamic</string>
 	<string name="main_page_search">Search</string>
 	<string name="main_record_video">Post video</string>
 	<string name="main_page_help">help</string>
@@ -187,6 +188,7 @@
 	<string name="central_volunteer">Looking for volunteers</string>
 	<string name="central_navigation">Route planning</string>
 	<string name="central_3d_scene">3D venue</string>
+	<string name="central_ar_complace">Augmented Reality</string>
 	<string name="central_my_attention">My Focus</string>
 	<string name="central_escape_route">Escape routes</string>
 	<string name="central_user_simple">super admin</string>
@@ -247,4 +249,6 @@
 	<string name="opinion_not_close">, please do not close this interface…</string>
 	<string name="opinion_post_success">Submitted successfully, thank you for your comments!</string>
 	<string name="opinion_post_failed">The submission failed, please check the network or try again later.</string>
+	<string name="video_share_name">Dynamic Video</string>
+	<string name="ar_distance_text">distance:</string>
 </resources>

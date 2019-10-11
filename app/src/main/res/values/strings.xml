@@ -302,6 +302,8 @@
     <string name="opinion_post_failed">提交失败，请检查网络或稍后重试。</string>
 
     <string name="video_share_name">视频动态</string>
-
+    
+    <!--增强现实-->
+    <string name="ar_distance_text">距离：</string>
 
 </resources>

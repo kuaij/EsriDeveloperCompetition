@@ -2,12 +2,13 @@
 <resources>
 	<string name="app_name">冬奥小助</string>
 	<string name="slogan">激情冬奥，你我共迎！</string>
-	<string name="copyright_information">2019 © Esri软件开发竞赛</string>
+	<string name="copyright_information">2019 © Esri杯中国大学生GIS软件开发竞赛</string>
 	<string name="hint_usename">邮箱:</string>
 	<string name="hint_password">密码:</string>
 	<string name="sign_in">登录</string>
 	<string name="sign_up">注册</string>
 	<string name="forget_password">忘记密码？</string>
+	<string name="register_email_name">注册密码</string>
 	<string name="register_page_name">注册</string>
 	<string name="register_username">昵称</string>
 	<string name="register_email">邮箱</string>
@@ -115,11 +116,17 @@
 	<string name="notify_get_permission">冬奥小助 需要申请通知栏权限，以便向您推送你关注的运动员和项目相关信息，请前往设置页面中授予权限。</string>
 	<string name="notify_contirm">前往设置</string>
 	<string name="notify_cancle">取消</string>
+	<string name="notify_title_volunteer">您有新的位置调配信息！</string>
+	<string name="notify_content_volunteer">根据实时游客调配信息，系统已对您的位置进行重新调配，新的位置为 志新路与志新东路交口。</string>
+	<string name="notify_action_yes_volunteer">直接前往</string>
 	<string name="main_page_area">赛区</string>
 	<string name="main_page_navigation">导航</string>
 	<string name="main_page_setting">设置</string>
+	<string name="main_page_dynatic">动态</string>
 	<string name="main_page_search">搜索</string>
+	<string name="main_record_video">发布视频</string>
 	<string name="main_page_help">帮助</string>
+	<string name="hide_buy_tickets">门票购买</string>
 	<string name="search_page_name">搜索比赛信息</string>
 	<string name="search_day">比赛日期：</string>
 	<string name="search_competition">比赛项目：</string>
@@ -181,7 +188,9 @@
 	<string name="central_volunteer">寻找志愿者</string>
 	<string name="central_navigation">路线规划</string>
 	<string name="central_3d_scene">三维场馆</string>
+	<string name="central_ar_complace">增强现实</string>
 	<string name="central_my_attention">我的关注</string>
+	<string name="central_escape_route">逃生路线</string>
 	<string name="central_user_simple">普通用户</string>
 	<string name="central_user_athlete">运动员</string>
 	<string name="central_user_volunteer">志愿者</string>
@@ -225,10 +234,21 @@
 	<string name="profile_user_identify">用户认证</string>
 	<string name="profile_save_name">保存</string>
 	<string name="opinion_post">提交</string>
+	<string name="identify_name">用户认证</string>
+	<string name="identify_volunteer_name">志愿者认证</string>
+	<string name="identify_athletic_name">运动员认证</string>
+	<string name="identify_volunteer_code_hint">请输入您的认证编号</string>
+	<string name="identify_confirm">认证</string>
+	<string name="identify_cancle">取消</string>
+	<string name="identify_type_volunteer">志愿者</string>
+	<string name="identify_type_athletic">运动员</string>
+	<string name="escape_page_name">逃生路线</string>
 	<string name="opinion_post_message">提交反馈</string>
 	<string name="opinion_exam_net">检查网络...</string>
 	<string name="opinion_post_ing">正在提交...</string>
 	<string name="opinion_not_close">，请勿关闭此界面...</string>
 	<string name="opinion_post_success">提交成功，感谢您的意见！</string>
 	<string name="opinion_post_failed">提交失败，请检查网络或稍后重试。</string>
+	<string name="video_share_name">视频动态</string>
+	<string name="ar_distance_text">距离：</string>
 </resources>

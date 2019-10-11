@@ -1,19 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".view.central.ARComplaceActivity">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_info"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="化工学院实验教学中心"
-        android:textSize="30sp"
-        android:visibility="invisible"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_alignParentRight="true">
+
+        <TextView
+            android:id="@+id/tv_info"
+            style="@style/ARTextViewStyle"
+            android:layout_marginTop="20dp"
+            android:text="建筑名：化工中心" />
+
+        <TextView
+            android:id="@+id/tv_hold_item"
+            style="@style/ARTextViewStyle"
+            android:text="场馆项目：开幕式/闭幕式"/>
+
+        <TextView
+            android:id="@+id/tv_distance"
+            style="@style/ARTextViewStyle"
+            android:text="距离：123.723m" />
+
+        <TextView
+            android:id="@+id/tv_seats_num"
+            style="@style/ARTextViewStyle"
+            android:text="座位数：4500" />
 
 
-</LinearLayout>
+
+
+
+
+    </LinearLayout>
+</RelativeLayout>
