@@ -21,7 +21,6 @@
             android:background="@color/identify_button_background"
             android:textColor="@color/identify_button_text_color"
             android:textSize="15sp"
-            android:enabled="false"
             android:text="@string/identify_volunteer_name"/>
 
         <net.qiujuer.genius.ui.widget.Button

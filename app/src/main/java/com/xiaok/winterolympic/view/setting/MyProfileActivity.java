@@ -43,6 +43,7 @@ import com.xiaok.winterolympic.utils.notify.Notificaitons;
 import com.xiaok.winterolympic.view.profile.ChangeAvatarActivity;
 import com.xiaok.winterolympic.view.profile.EditNameActivity;
 import com.xiaok.winterolympic.view.profile.MoreProfileActivity;
+import com.xiaok.winterolympic.view.profile.UserIdentifyActivity;
 
 import net.qiujuer.genius.ui.widget.Button;
 
@@ -219,8 +220,11 @@ public class MyProfileActivity extends AppCompatActivity implements AdapterView.
                 break;
             //用户认证
             case 3:
-                showUserIdentifyDialogs();
-//                startActivityForResult(new Intent(MyProfileActivity.this, UserIdentifyActivity.class),USER_IDENTIFY);
+                if (values[3].equals(getString(R.string.identify_type_volunteer))){
+                    startActivity(new Intent(MyProfileActivity.this, UserIdentifyActivity.class));
+                }else {
+                    showUserIdentifyDialogs();
+                }
                 break;
             //更多
             case 4:

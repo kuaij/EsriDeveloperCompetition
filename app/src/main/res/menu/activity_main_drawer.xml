@@ -31,10 +31,10 @@
             android:id="@+id/central_indoor_map"
             android:icon="@mipmap/central_indoor"
             android:title="@string/indoor_page_name"/>
-        <item
-            android:id="@+id/central_ar_complace"
-            android:icon="@mipmap/central_ar_complace"
-            android:title="@string/central_ar_complace"/>
+<!--        <item-->
+<!--            android:id="@+id/central_ar_complace"-->
+<!--            android:icon="@mipmap/central_ar_complace"-->
+<!--            android:title="@string/central_ar_complace"/>-->
 
 
         <item

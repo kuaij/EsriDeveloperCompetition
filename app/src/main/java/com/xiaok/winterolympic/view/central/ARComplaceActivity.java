@@ -7,7 +7,9 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -17,6 +19,7 @@ import com.xiaok.winterolympic.R;
 import com.xiaok.winterolympic.utils.CoordinateUtils;
 import com.xiaok.winterolympic.view.MainPageActivity;
 
+import java.text.DecimalFormat;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -60,6 +63,14 @@ public class ARComplaceActivity extends AppCompatActivity implements SensorEvent
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_arcomplace);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            // Show the Up button in the action bar.
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeButtonEnabled(true);
+            actionBar.setTitle(getString(R.string.central_ar_complace));
+        }
 
         tv_info = findViewById(R.id.tv_info);
         tv_hold_item = findViewById(R.id.tv_hold_item);
@@ -111,7 +122,9 @@ public class ARComplaceActivity extends AppCompatActivity implements SensorEvent
             @Override
             public void run() {
                 userMercatorPoint = getMercatorPoint(MainPageActivity.point);
+                DecimalFormat df = new DecimalFormat("0.000");
                 currentDistance = calculationDistance();
+                currentDistance = Double.parseDouble(df.format(currentDistance));
 //                if (userDistance<=200){
 //
 //                }
@@ -159,6 +172,19 @@ public class ARComplaceActivity extends AppCompatActivity implements SensorEvent
             tv_seats_num.setVisibility(View.INVISIBLE);
         }
         tv_distance.setText(getString(R.string.ar_distance_text)+currentDistance+"m");
+    }
+
+
+    //左上角返回
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:   //返回键的id
+                finish();
+                return false;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }

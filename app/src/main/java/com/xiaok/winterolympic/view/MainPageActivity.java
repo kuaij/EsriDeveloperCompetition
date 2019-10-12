@@ -301,10 +301,10 @@ public class MainPageActivity extends AppCompatActivity implements NavigationVie
             case R.id.central_escape_route:
                 startActivity(new Intent(MainPageActivity.this, EscapeRouteActivity.class));
                 break;
-            //AR场馆
-            case R.id.central_ar_complace:
-                startActivity(new Intent(MainPageActivity.this,ARComplaceActivity.class));
-                break;
+//            //AR场馆
+//            case R.id.central_ar_complace:
+//                startActivity(new Intent(MainPageActivity.this,ARComplaceActivity.class));
+//                break;
             default:break;
         }
 
