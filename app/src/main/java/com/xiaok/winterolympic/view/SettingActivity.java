@@ -39,7 +39,8 @@ public class SettingActivity extends AppCompatActivity {
         listview = findViewById(R.id.lv_setting);
 
         //ListView 显示数据
-        data  = new String[]{getString(R.string.setting_opinions_view),
+        data  = new String[]{
+                getString(R.string.setting_opinions_view),
                 getString(R.string.setting_about_app),
                 getString(R.string.setting_clear_cache),
                 getString(R.string.setting_app_grades),

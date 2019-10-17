@@ -60,9 +60,10 @@ public class MyProfileActivity extends AppCompatActivity implements AdapterView.
 
     //requestCode
     private static final int CHANGE_NAME = 1;
-    private static final int USER_IDENTIFY = 2;
     private static final int TAKE_PHOTO = 3;
     private static final int OPEN_GALLERY = 4;
+    private static final int USER_IDENTIFY_VOLUNTEER = 5;
+    private static final int USER_IDENTIFY_ATHLETIC = 6;
 
     private NotificationManager mNM;
     private Context mContext;
@@ -221,7 +222,7 @@ public class MyProfileActivity extends AppCompatActivity implements AdapterView.
             //用户认证
             case 3:
                 if (values[3].equals(getString(R.string.identify_type_volunteer))){
-                    startActivity(new Intent(MyProfileActivity.this, UserIdentifyActivity.class));
+                    startActivityForResult(new Intent(MyProfileActivity.this, UserIdentifyActivity.class),USER_IDENTIFY_VOLUNTEER);
                 }else {
                     showUserIdentifyDialogs();
                 }

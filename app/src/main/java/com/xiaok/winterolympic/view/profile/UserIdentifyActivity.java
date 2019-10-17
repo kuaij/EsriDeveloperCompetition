@@ -19,6 +19,9 @@ public class UserIdentifyActivity extends AppCompatActivity {
     private VolunteerIdentifyFragment volunteerIdentifyFragment;
     private AthlethicIdentifyFragment athlethicIdentifyFragment;
 
+    public static final int CANCLE_VOLUNTEER = 1;
+    public static final int CANCLE_ATHLETIC = 2;
+
     private Fragment[]fragments;
     private int lastFragment;
 

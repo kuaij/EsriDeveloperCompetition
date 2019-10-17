@@ -42,6 +42,7 @@ import com.orhanobut.logger.Logger;
 import com.xiaok.winterolympic.MyApplication;
 import com.xiaok.winterolympic.R;
 import com.xiaok.winterolympic.base.NameObserver;
+import com.xiaok.winterolympic.model.OnlineDateModel;
 import com.xiaok.winterolympic.model.UIAyncManager;
 import com.xiaok.winterolympic.utils.notify.Notificaitons;
 import com.xiaok.winterolympic.utils.notify.NotificationsPermission;
@@ -199,7 +200,9 @@ public class MainPageActivity extends AppCompatActivity implements NavigationVie
 
         main_tv_day_last = linearLayout.findViewById(R.id.tv_days_last);
 
-        syncDaysLast();
+        syncDaysLast(); //同步冬奥会倒计时
+
+        OnlineDateModel.getWeatherDate(); //刷新天气状况
 
         linearLayout.setOnClickListener(v -> startActivity(new Intent(MainPageActivity.this,MyProfileActivity.class)));
 
