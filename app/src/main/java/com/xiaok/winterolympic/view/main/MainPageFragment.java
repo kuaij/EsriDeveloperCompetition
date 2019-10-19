@@ -220,7 +220,6 @@ public class MainPageFragment extends Fragment {
                 currentLongitude = point.getX(); //经度
                 currentLatitude = point.getY(); //纬度
                 mainActivity.point = new Point(currentLongitude,currentLatitude);
-                Logger.e("X:"+currentLongitude+"\n"+"Y:"+currentLatitude);
             }
         });
 
@@ -731,6 +730,7 @@ public class MainPageFragment extends Fragment {
                     showVenueInfo(mResultAttributes, R.string.indoor_bird_nest);
                 }else {
                     //点击了其他地方，不做处理
+
                 }
             }
 

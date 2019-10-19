@@ -35,6 +35,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.blankj.utilcode.util.CleanUtils;
 import com.blankj.utilcode.util.FileIOUtils;
 import com.esri.arcgisruntime.geometry.Point;
@@ -42,11 +44,11 @@ import com.orhanobut.logger.Logger;
 import com.xiaok.winterolympic.MyApplication;
 import com.xiaok.winterolympic.R;
 import com.xiaok.winterolympic.base.NameObserver;
-import com.xiaok.winterolympic.model.OnlineDateModel;
 import com.xiaok.winterolympic.model.UIAyncManager;
+import com.xiaok.winterolympic.utils.StreamUtils;
+import com.xiaok.winterolympic.utils.ToastUtils;
 import com.xiaok.winterolympic.utils.notify.Notificaitons;
 import com.xiaok.winterolympic.utils.notify.NotificationsPermission;
-import com.xiaok.winterolympic.view.central.ARComplaceActivity;
 import com.xiaok.winterolympic.view.central.EscapeRouteActivity;
 import com.xiaok.winterolympic.view.central.GamesScheduleActivity;
 import com.xiaok.winterolympic.view.central.IndoorMapActivity;
@@ -67,11 +69,16 @@ import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 import net.qiujuer.genius.ui.widget.Button;
 
+
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -88,6 +95,12 @@ public class MainPageActivity extends AppCompatActivity implements NavigationVie
 
     private static final int NOTIFY_CODE_ATHLETIC = 1;
     private static final int NOTIFY_CODE_ITEM = 2;
+
+    private static final int WEATHER_REQUEST_OK = 3;
+
+    private final String APPKEY ="40e6518062ee662ede348e67d896dac0";
+
+    private String cityName = "北京";
 
     public static Point point;
     private MainPageFragment mainPageFragment;
@@ -111,6 +124,10 @@ public class MainPageActivity extends AppCompatActivity implements NavigationVie
     private TextView main_tv_user_email;
     private TextView main_tv_day_last;
     private ImageView main_iv_photo;
+    private TextView tv_temperture;
+    private TextView tv_humidity;
+    private TextView tv_wind_direct;
+    private TextView tv_wind_power;
 
     private String currentName = "xiaok";
 
@@ -134,6 +151,19 @@ public class MainPageActivity extends AppCompatActivity implements NavigationVie
                 default:break;
             }
 
+        }
+    };
+
+
+    private Handler weatherHandle = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case WEATHER_REQUEST_OK:
+                    String responseStr = (String) msg.obj;
+                    showWeatherData(responseStr);
+            }
         }
     };
 
@@ -202,7 +232,15 @@ public class MainPageActivity extends AppCompatActivity implements NavigationVie
 
         syncDaysLast(); //同步冬奥会倒计时
 
-        OnlineDateModel.getWeatherDate(); //刷新天气状况
+        //初始化天气相关控件
+        tv_temperture = linearLayout.findViewById(R.id.central_tv_temperture);
+        tv_humidity = linearLayout.findViewById(R.id.central_tv_humidity);
+        tv_wind_direct = linearLayout.findViewById(R.id.central_tv_wind_direct);
+        tv_wind_power = linearLayout.findViewById(R.id.central_tv_wind_power);
+
+        //刷新天气数据
+        requestForData(makeRequest());
+
 
         linearLayout.setOnClickListener(v -> startActivity(new Intent(MainPageActivity.this,MyProfileActivity.class)));
 
@@ -723,6 +761,85 @@ public class MainPageActivity extends AppCompatActivity implements NavigationVie
         myInput.close();
         myOutput.close();
     }
+
+
+
+    /*
+    * 天气状况刷新
+     */
+    //构造请求体
+    private URL makeRequest() {
+        String url ="https://apis.juhe.cn/simpleWeather/query";//请求接口地址
+        String finalPath = url+"?city="+cityName+"&key="+APPKEY;
+        try {
+            URL url1 = new URL(finalPath);
+            return url1;
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
+    private void requestForData(URL url){
+
+        new Thread(){
+            @Override
+            public void run() {
+                super.run();
+                try {
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setRequestMethod("GET"); //注意GET要大写
+                    conn.setConnectTimeout(5000); //设置超时时间
+                    conn.connect();
+                    int responseCode = conn.getResponseCode();
+                    Logger.e("HTTP返回码："+responseCode);
+                    if (responseCode == 200){
+                        InputStream in = conn.getInputStream();
+                        String responseStr = StreamUtils.readStream(in); //将服务器返回的流转化为字符串
+                        Message msg = Message.obtain();
+                        msg.what = WEATHER_REQUEST_OK;
+                        msg.obj = responseStr;
+                        weatherHandle.sendMessage(msg);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+    }
+
+    private void showWeatherData(String responseData){
+        JSONObject initObj = JSONObject.parseObject(responseData);
+        JSONObject finalDate = null;
+        int error_code = initObj.getIntValue("error_code");
+        if (error_code == 0){
+            String inString1 = initObj.getString("result");
+            JSONObject inData1 = JSON.parseObject(inString1);
+            String inString2 = inData1.getString("realtime");
+            finalDate = JSONObject.parseObject(inString2);
+        }
+
+
+
+        if (finalDate != null){
+            String temperatureDate = finalDate.getString("temperature"); //获取温度数据
+            String humidityDate = finalDate.getString("humidity"); //获取湿度数据
+            String weatherInfoDate = finalDate.getString("info"); //获取天气描述，晴，阴等
+            String windDectictDate = finalDate.getString("direct"); //获取风向数据
+            String windPowerDate = finalDate.getString("power"); //获取风力数据
+
+            //显示天气相关信息
+            tv_temperture.setText(temperatureDate+"℃");
+            tv_humidity.setText(humidityDate+"%");
+            tv_wind_direct.setText(windDectictDate);
+            tv_wind_power.setText(windPowerDate);
+
+        }else {
+            ToastUtils.showSingleToast("刷新天气失败，请检查网络或稍后重试！");
+        }
+    }
+
 
 
 
