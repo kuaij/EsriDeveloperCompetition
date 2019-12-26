@@ -47,11 +47,6 @@ import static com.xiaok.winterolympic.utils.notify.Notificaitons.NOTIFICATION_ME
 import static com.xiaok.winterolympic.utils.notify.Notificaitons.NOTIFICATION_REMOTE_INPUT;
 import static com.xiaok.winterolympic.utils.notify.Notificaitons.REMOTE_INPUT_RESULT_KEY;
 
-/**
- *
- * @author peter
- * @date 2018/6/28
- */
 
 public class NotificationService extends Service {
     private final static String TAG = "NotificationService";

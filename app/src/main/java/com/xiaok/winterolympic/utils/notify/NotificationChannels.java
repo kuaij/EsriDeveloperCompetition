@@ -1,9 +1,5 @@
 package com.xiaok.winterolympic.utils.notify;
 
-/**
- * Created by peter on 2018/6/27.
- */
-
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
@@ -11,11 +7,6 @@ import android.content.Context;
 import com.xiaok.winterolympic.R;
 
 import java.util.Arrays;
-
-/**
- * Create notification channel
- *
- * @author peter*/
 
 public class NotificationChannels {
     public final static String CRITICAL = "critical";

@@ -150,7 +150,7 @@ public class ARComplaceActivity extends AppCompatActivity implements SensorEvent
     }
 
 
-    //计算用户当前与场馆距离，todo 测试时暂时采用化工实验中心楼进行测试
+    //计算用户当前与场馆距离
     private double calculationDistance(){
         double xDistance = userMercatorPoint.getX() - testMercatorPoint.getX();
         double yDistance = userMercatorPoint.getY() - testMercatorPoint.getY();

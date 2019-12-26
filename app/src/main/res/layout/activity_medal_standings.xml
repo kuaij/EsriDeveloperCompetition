@@ -60,6 +60,5 @@
             android:scaleType="fitXY"
             android:adjustViewBounds="true"
             android:src="@mipmap/medal_2021"/>
-4
     </LinearLayout>
 </ScrollView>

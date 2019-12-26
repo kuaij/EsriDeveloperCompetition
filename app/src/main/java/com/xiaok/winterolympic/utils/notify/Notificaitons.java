@@ -16,12 +16,6 @@ import com.xiaok.winterolympic.R;
 import com.xiaok.winterolympic.view.central.NavigationActivity;
 import com.xiaok.winterolympic.view.notify.WatchLiveActivity;
 
-/**
- *
- * @author peter
- * @date 2018/7/4
- */
-
 public class Notificaitons {
     public final static int NOTIFICATION_SAMPLE = 0;
     public final static int NOTIFICATION_ACTION = 1;

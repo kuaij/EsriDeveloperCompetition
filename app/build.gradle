@@ -28,11 +28,14 @@ android {
 
     packagingOptions {
         exclude 'META-INF/proguard/androidx-annotations.pro'
+        exclude 'assets/location_map_gps_locked.png'
+        exclude 'assets/location_map_gps_3d.png'
     }
 
 
     configurations {
         all*.exclude group: 'com.google.code.gson'
+
     }
 
     configurations.all {
